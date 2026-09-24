@@ -4,6 +4,8 @@ title: "Taller 2"
 
 # A. Metodología general de pronósticos y modelos de suavizamiento exponencial (ETS)
 
+## Pregunta 1
+
 1.  Para cada una de las siguientes siguaciones, identifique:
 
     (a) La variable de interés a modelar
@@ -179,6 +181,8 @@ Razón por la cuál, solo se reespecifican sus componenetes y reestiman los par�
 | **(i) Modelo base (*benchmark*)** | Modelo Naïve persistente (última inflación observada), AR(1) / ARIMA univariado sin covariables o inflacion objetivo/inercial. |
 :::
 ::::
+
+## Pregunta 2
 
 2.  Muestre que la expresión del SMAPE vista en clase, hace que esta métrica se encuentre siempre entre 0 y 2.
 
