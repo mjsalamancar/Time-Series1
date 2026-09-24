@@ -1,0 +1,122 @@
+---
+title: "Series de Tiempo Univariadas (21 Sep - Sem 4)"
+---
+
+**Plan de Trabajo:** Metodología para la construcción de pronósticos
+
+------------------------------------------------------------------------
+
+:::::: {.callout-tip collapse="true" style="border-radius: 20px; padding: 15px;"}
+# 📋 TAREAS
+
+::: {.callout-note collapse="true"}
+## 📝 Nota / Pendientes
+
+- [ ] Revisar si tengo acceso al drive
+- [ ] Ver listas de Fallas
+:::
+
+::: {.callout-important collapse="true"}
+## 📅 Ver Parcelador Actualizado
+
+Aquí puedes consultar el cronograma del curso:
+
+|  Semana   |   Fecha    | Tema                              | Entregable / Nota |
+|:---------:|:----------:|:----------------------------------|:------------------|
+|   Sem 1   |   01 Sep   | Introducción a Series de Tiempo   | Lectura Cap. 1    |
+|   Sem 2   |   08 Sep   | Estacionariedad y Autocorrelación | Taller 1          |
+|   Sem 3   |   15 Sep   | Modelos AR y MA                   | Ejercicios R      |
+| **Sem 4** | **21 Sep** | **Metodología de Pronósticos**    | **Quiz 1**        |
+
+- **Acceso Completo:** [Link al Drive del Curso](https://docs.google.com/spreadsheets/d/1K8g76Qxke021RG1sHjpsHczTpgaNT485/edit?gid=602150545#gid=602150545)
+:::
+
+::: {.callout-warning collapse="true"}
+## ⚡ Fechas Importantes
+
+- [ ] Ver video autónomo (Previo a clase)
+- [ ] Proyecto 1 iniciará en la semana 5
+- [ ] Primera entrega de pronósticos (Domingo 4 de octubre)
+- [ ] Taller 2
+:::
+::::::
+
+# Metodología de Pronósticos en Series de Tiempo
+
+## Problema práctico de los pronósticos (I)
+
+- Para hablar de un método de pronósticos, se debe adaptar lo anterior.
+- Para ello es importante definir 3 elementos:
+
+::: {.callout-note collapse="true" style="background-color: #f3e8ff; border-left-color: #7e22ce; border-radius: 25px; padding: 15px;"}
+## 1. Definición del Pronóstico
+
+- [ ] Horizonte
+- [ ] Pasos
+- [ ] Estrategia de Validación (Ventana, Muestreo, Calibración)
+:::
+
+::: {.callout-note collapse="true" style="background-color: #e0f2fe; border-left-color: #0284c7; border-radius: 25px; padding: 15px;"}
+## 2. Evaluación
+
+- [ ] Resultado de Interés
+- [ ] Métricas de evaluación de Pronósticos
+:::
+
+::: {.callout-note collapse="true" style="background-color: #ffedd5; border-left-color: #f97316; border-radius: 25px; padding: 15px;"}
+## 3. Estrategia de Selección del Modelo
+
+- [ ] Modelo base
+- [ ] Modelos a considerar
+- [ ] Hibridación
+- [ ] Combinación
+:::
+
+## Selección del Horizonte, los Pasos y la Estructura de Validación
+
+:::::: columns
+::: {.column width="55%"}
+**Caso práctico: Mercado Eléctrico Mayorista**
+
+Un operador de un parque eólico participa en el mercado eléctrico mayorista. La producción real de energía del parque se observa hora a hora, sin rezago y esta información está disponible de forma continua.
+
+
+ Sin embargo, el operador debe declarar hoy la oferta de energía para las próximas 24 horas.
+ 
+ 
+ 
+Especificando la cantidad de energía que se compromete a inyectar en cada hora del día siguiente.
+:::
+
+::: {.column width="5%"}
+<!-- Espacio entre columnas -->
+:::
+
+::: {.column width="40%"}
+![Parque Eólico](Gemini_Generated_Image_8yxz1t8yxz1t8yxz.jpg){style="border-radius: 15px;"}
+:::
+::::::
+
+::: {.callout-note collapse="true" style="background-color: #dcfce7; border-left-color: #16a34a; border-radius: 25px; padding: 15px;"}
+## Frecuencia / Periodo de la serie
+
+1 hora
+:::
+
+::: {.callout-note collapse="true" style="background-color: #dcfce7; border-left-color: #16a34a; border-radius: 25px; padding: 15px;"}
+## Horizonte de predicción
+
+M = 24h
+:::
+
+::: {.callout-note collapse="true" style="background-color: #dcfce7; border-left-color: #16a34a; border-radius: 25px; padding: 15px;"}
+## Número de pasos adelante
+
+1, 2, 3, 4, 5, 6, 7, ..., 24
+:::
+
+::: {.callout-note collapse="true" style="background-color: #dcfce7; border-left-color: #16a34a; border-radius: 25px; padding: 15px;"}
+## Nueva info / Recalibración
+
+Sí, y solo si hay nueva info
+:::

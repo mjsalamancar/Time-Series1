@@ -1,0 +1,21 @@
+# Presentación {.unnumbered}
+
+::: {.callout-note appearance="minimal"}
+# **Ficha del Curso**
+
+* **Materia:** Series de Tiempo
+* **Semestre:** 2026-2
+* **Profesor:** Mario E. Arrieta
+* **Estudiante:** María José Salamanca Rivera
+:::
+
+---
+
+Bienvenido/a a este libro de apuntes y laboratorios de **Series de Tiempo**. En este espacio se recopilan los conceptos teóricos, modelos estocásticos, ejercicios prácticos y aplicaciones desarrolladas durante el semestre académico **2026-2**.
+
+### Estructura del Libro
+
+- **Semana 1:** Conceptos fundamentales de estacionariedad y autocovarianza.
+- **Semana 2:** Identificación, estimación y verificación de modelos de series temporales.
+- **Semana 3:** Métodos de validación y análisis de residuos.
+- **Semana 4:** Métodologia datos y Modelos de Suavizamiento exponencial.

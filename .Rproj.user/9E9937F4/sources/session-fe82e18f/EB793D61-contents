@@ -1,0 +1,66 @@
+project:
+  type: website
+
+format:
+  html:
+    theme: cosmo
+    linkcolor: "#1d4ed8"    # Azul para enlaces (ligeramente más oscuro para contrastar)
+    
+    # Fuentes importadas directamente de Google Fonts
+    mainfont: "Inter, system-ui, -apple-system, sans-serif"
+    headingfont: "Plus Jakarta Sans, sans-serif"
+    
+    # Parámetros de tipografía para lectura óptima
+    fontsize: "1.05rem"      # Tamaño de texto ligeramente más amplio
+    linestretch: "1.65"      # Interlineado amplio para no fatigar la vista
+    
+    # Importación de fuentes y personalización de colores
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+        
+        <style>
+          /* Color Azul para todo el texto principal */
+          body {
+            color: #1e3a8a !important; /* Azul oscuro elegante y legible */
+          }
+          
+          /* Color Rojo para todos los títulos (h1, h2, h3, h4, h5, h6) */
+          h1, h2, h3, h4, h5, h6, .title {
+            color: #dc2626 !important; /* Rojo vibrante */
+          }
+        </style>
+website:
+  sidebar:
+    style: "docked"
+    background: "#f8fafc"    # Gris claro neutro (Slate 50)
+    foreground: "#1e293b"    # Texto e iconos en gris oscuro legible (Slate 800)
+    collapse-level: 3
+    contents:
+      - section: "Clases"
+        icon: "journal-bookmark-fill"
+        contents:
+          - section: "Semana 4"
+            contents:
+              - section: "Lunes"
+                contents:
+                  - text: "Pre-Clase"
+                    href: pre4.qmd
+                  - text: "Clase - Profe"
+                    href: clase4.qmd
+                  - text: "Pos-Clase"
+                    href: pos4.qmd
+              - section: "Miércoles"
+                contents:
+                  - text: "Clase"
+                    href: clase5.qmd
+
+      - section: "Talleres"
+        icon: "tools"
+        contents:
+          - text: "Taller 1"
+            href: taller1.qmd
+          - text: "Taller 2"
+            href: taller2.qmd

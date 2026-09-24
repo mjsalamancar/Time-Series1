@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>clase5</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-dc395e18c8bee22eb204ab71e76a7c48.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+
+<style>
+  /* Color Azul para todo el texto principal */
+  body {
+    color: #1e3a8a !important; /* Azul oscuro elegante y legible */
+  }
+  
+  /* Color Rojo para todos los títulos (h1, h2, h3, h4, h5, h6) */
+  h1, h2, h3, h4, h5, h6, .title {
+    color: #dc2626 !important; /* Rojo vibrante */
+  }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Clases</li><li class="breadcrumb-item">Semana 4</li><li class="breadcrumb-item"><a href="./clase5.html">Miércoles</a></li><li class="breadcrumb-item"><a href="./clase5.html">Clase</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true"><i class="bi bi-journal-bookmark-fill" role="img">
+</i> 
+ <span class="menu-text">Clases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semana 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lunes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pre4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pre-Clase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clase4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clase - Profe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pos4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pos-Clase</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Miércoles</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clase5.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Clase</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true"><i class="bi bi-tools" role="img">
+</i> 
+ <span class="menu-text">Talleres</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taller1.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Taller 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taller2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Taller 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Clases</li><li class="breadcrumb-item">Semana 4</li><li class="breadcrumb-item"><a href="./clase5.html">Miércoles</a></li><li class="breadcrumb-item"><a href="./clase5.html">Clase</a></li></ol></nav></header>
+
+
+
+
+<section id="modelos-de-suavizamiento" class="level1">
+<h1><strong>Modelos de Suavizamiento</strong></h1>
+<p><img src="images/clipboard-2235731122.png" class="img-fluid"></p>
+<p>Vamos a alimentar nuestra caja de herramientas con algunos modelos muy sencillos.</p>
+<p>Vamos a iniciar con los:</p>
+<p><img src="images/clipboard-1934629013.png" class="img-fluid"></p>
+<p>Este video se va a encargar de explicar la teoria y el transfondo detras de todos estos modelos y apartir de ello, sería la aplicación, el como se hace en R.</p>
+<p>Y ajustar algunas cosas de Métodología y nos explicara cosas del proyecto</p>
+<p><img src="images/clipboard-761269836.png" class="img-fluid"></p>
+<p>El origen de esto fue entre lo que fue durante y finales de la 2da guerra mundial.</p>
+<p>Donde una serie de matemáticos empezaron a proponer métodos, en este caso para predecir la posicion de un submarino, dado de información cuando habia sido observado.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2632392046.png" class="img-fluid figure-img"></p>
+<figcaption><img src="images/clipboard-1962630555.png" class="img-fluid figure-img"></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2571484593.png" class="img-fluid figure-img"></p>
+<figcaption><img src="images/clipboard-3494155449.png" class="img-fluid figure-img"></figcaption>
+</figure>
+</div>
+<p>Pero la idea es como pensar en un submarino o algo que esta debajo del agua y vimos hace 5 minutos que estaba en determinada posición.</p>
+<p>La idea es como puedo usar esa información / Y otra información que yo voy observando (De como se va acercando a mi, para predecir</p>
+<section id="escenario-en-series-de-tiempo" class="level2">
+<h2 class="anchored" data-anchor-id="escenario-en-series-de-tiempo"><strong>Escenario en Series de Tiempo</strong></h2>
+<p>Vamos a traer 2 fuentes de información:</p>
+<p>1) Qué es el Histórico de los Datos</p>
+<p>2) El otro son los datos nuevos</p>
+<p>Y vamos a tratar de combinarlos para dar nuevos prónosticos.</p>
+<p><img src="images/clipboard-589729453.png" class="img-fluid"></p>
+<p>En el instante t-2, hay algo que viene desde antes que viene guardado la informacipon de lo que se sabia de antes (Forecast)</p>
+<ul>
+<li><p>Forecast : Pronostico con base en la info t-3 (Luego observo algo)</p></li>
+<li><p>Demand: Este valor observado me ayuda a corregir lo que yo llevo y a convinaro con unos pesos, para saber lo qeu será el pronóstico de mañana o del instante siguiente.</p></li>
+</ul>
+<p>Y nuevamente convino <strong>Lo Observado</strong> + <strong>Lo Pronosticado de</strong> tal manera que vamos obteniendo información en una ventana e irla actualizando</p>
+<p>(Ese es el principio del suavizamiento exponencial Simple)</p>
+<p><img src="images/clipboard-1111021707.png" class="img-fluid"></p>
+<p>La clase pasada hablábamos de los modelos base o los modelos Benchmark y vimos ( o les mencioné muy rápidamente que cuando uno no tiene mucha información uno suele hacer 2 cosas)</p>
+<ul>
+<li><p>El <u>pronóstico de ingenuidad</u> (o Persistencia) consiste en coger el último valor observado dentro de la ventana temporal y decir que ese va a ser mi pronóstico.</p>
+<p><img src="images/clipboard-899558654.png" class="img-fluid"></p></li>
+<li><p>O un pronóstico de la media, por ejemplo. Yo también podría decir, voy a promediar, toda la muestra (Pero podria ser una ventana más corta)</p>
+<p><img src="images/clipboard-2558086235.png" class="img-fluid"></p></li>
+</ul>
+<p>Y esos son dos pronósticos base con lo cual nosotros comparamos</p>
+<section id="método-exponencial-simple" class="level3">
+<h3 class="anchored" data-anchor-id="método-exponencial-simple"><strong>Método exponencial Simple</strong></h3>
+<p>Vamos a ver que el métodos exp onencial simple (La idea de Brown) fue de alguna manera extender y hacer más general estos dos comportamientos de dos prónosticos simples (Osea el de ingenuidad y el de media.)</p>
+</section>
+</section>
+</section>
+<section id="alpha" class="level1">
+<h1><span class="math inline">\(\alpha\)</span></h1>
+<p>Entonces lo que el hizo (Brown) fue introducir un parámetro que esta entre [0,1] y con ese alfa (<span class="math inline">\(\alpha\)</span>) vamos a ver qué tanto peso le damos a la información dependiendo <strong>de que tan reciente sea.</strong></p>
+<p>Entonces, a la última observación, por ejemplo, estoy tratando de predecir el instante T + 1, ¿cierto?</p>
+<p><img src="images/clipboard-679853225.png" class="img-fluid"></p>
+<p>Entonces, a la observación inmediatamente anterior le doy un peso de alfa y luego sigo distribuyendo los pesos. Miren que alfa aparecen todos.</p>
+<p>Sí, ya vamos a ver por qué. Sí. Eh, yo no sé si ustedes se acuerdan de la distribución geométrica.</p>
+<section id="distribución-geométrica" class="level2">
+<h2 class="anchored" data-anchor-id="distribución-geométrica"><strong>Distribución Geométrica</strong></h2>
+<p>Si ustedes tienen una variable aleatoria, por ejemplo,</p>
+<p><img src="images/clipboard-1855053182.png" class="img-fluid"></p>
+<p>número de sucesos, número de lanzamientos de una moneda o número de lo general, número de sucesos hasta obtener un éxito, ¿cierto? Ustedes recordarán en probabilidad que generalmente pues si había unas condiciones adicionales, uno podía modelar esta variable aleatoria como una variable aleatoria geométrica de parámetro P y su <strong>función de masa de probabilidad</strong> era</p>
+<section id="función-de-masa-de-la-distribución-geométrica-caso-discreto" class="level4">
+<h4 class="anchored" data-anchor-id="función-de-masa-de-la-distribución-geométrica-caso-discreto">Función de Masa de la Distribución Geométrica (Caso Discreto)</h4>
+<p><img src="images/clipboard-3883629070.png" class="img-fluid"></p>
+<p>se bueno, eh, digámoslo así 1 - p, que era la probabilidad de fracaso x a la x - 1 * p, si x era igual a 1, 2, etcétera, y 0 en otro caso. Es decir, si ustedes graficaban esta función de de masa de probabilidad, acá en uno tenía P, ¿cierto? En dos uno tenía P * 1 - P, ¿cierto? Aquí teníamos P * 1 - P y así iba bajando P * 1 - P², ¿sí? al cuadrado y excesivamente iba bajando y por eso pues esta era geométrica, pero era el equivalente de la exponencial en el caso continuo.</p>
+<p>Sí, era la que también tenía <code>pérdida de memoria</code> y ustedes se acordarán de varias. Aquí estamos pintando la <strong>función de masa y aquí estamos pintando el valor de x de la variable</strong>, ¿no? Entonces, miren que los pesos que</p>
+<p><img src="images/clipboard-4260602078.png" class="img-fluid"></p>
+<p>Entonces, miren que los pesos que nosotros estamos obteniendo, voy a cambiarles el color para que se vean mejor. Los pesos que estamos obteniendo se parecen mucho, o sea, en realidad guardan la misma estructura.</p>
+<p>Entonces, el nombre exponencial, bueno, y obviamente esto continuaba, ¿no? Íbamos en tres, pero pues eso continuaba.</p>
+<p>O sea, el <strong>soporte de esta variable (</strong><span class="math inline">\(\Omega_X\)</span>) aleatoria eran, si ustedes recuerdan, pues para recordar, soporte de esta variable aleatoria eran los naturales, bueno, e los elementos 1, 2, 3 y el infinito, ¿no?</p>
+<p><span class="math display">\[\Omega_X = \{1, 2, 3\} \cup \{\infty\}\]</span></p>
+<p>Porque podía llegar a suceder que nunca se diera el éxito, o sea, era posible más no muy probable.</p>
+<p></p>
+<p><strong><em>“Y por ende por esa razón se le dio el nombre de distribución o suavisamiento exponencial”</em></strong></p>
+<p>Pues heredando, sabiendo que la geométrica es la versión discreta de la distribución exponencial y ambas son las que tienen pérdida de memoria.</p>
+<p>Pero bueno, se ve claramente que si alfa está entre 0 y 1, así como lo vimos acá, los pesos van decreciendo.</p>
+<p><img src="images/clipboard-2517484742.png" class="img-fluid"></p>
+<p>Entonces, estos pesos cada vez, o sea, entre <em>más alejada esté la información, menos peso va a tener en la predicción un paso adelante,</em> ¿cierto?</p>
+<p>Y pues bueno, ahí tenemos una manera de explorar eso.</p>
+</section>
+<section id="por-qué-colocamos-puntos-suspensivos" class="level3">
+<h3 class="anchored" data-anchor-id="por-qué-colocamos-puntos-suspensivos">¿Por qué colocamos puntos suspensivos?</h3>
+<p>Vamos a ver, vamos a tratar de sumar esos pesos a ver cuánto suman. Miren que los pesos de de que teníamos acá, o sea, si tratamos de ver como un sistema de pesos, aquí todo el peso estaba concentrado en la observación y sumaban uno.</p>
+<p><img src="images/clipboard-1605140323.png" class="img-fluid"></p>
+<p>Aquí cada observación tenía 1 sobre t y la suma de los pesos de cada observación también nos daba uno, ¿cierto?</p>
+<p>O sea, en este caso particular también. Vamos a ver cuánto suman en este caso los pesos.</p>
+<p>Vamos a sumar esos pesos que tenemos ahí. Tenemos que sumar:</p>
+<p><img src="images/clipboard-1939672110.png" class="img-fluid"></p>
+<p>alfa + alfa * 1 - alfa + alfa * 1 - alfa cuad más etcétera. ¿Cierto? Que esto es lo mismo que decir la suma desde igual 1.</p>
+<p><img src="images/clipboard-2149034590.png" class="img-fluid"></p>
+<p>Miren ustedes que el el el pronóstico de persistencia en realidad equivaldía a ser alfa igual a 1. Vamos a ver más adelante el pronóstico eh de media a qué equivaldría. ¿Sí? Miren que ahí tenemos los pesos y ahorita vamos a ver por qué colocamos los puntos suspensivos o qué queremos indicar con eso.</p>
+<p>Ustedes recordarán que esto es una, o sea, los coeficientes son una progresión geométrica y al ser una progresión geométrica se pueden sumar.</p>
+<p>Voy a factorizar el alfa aquí. Eh, bueno, podríamos poner T acá, aunque no quisiera. Bueno, coloquemos M y ahorita miramos a ver porque pregunté qué pasaba si m tendía infinito, o sea, muchos más datos ahí hacia atrás.</p>
+<p>Bueno, dejémoslo con T acá. Se, suponiendo que vamos a ir retrocediendo hasta el límite, hasta el primer dato.</p>
+<p>Sería desde 0 hasta t de 1 - alfa. Esto es una es lo que da origen luego a una serie geométrica y ustedes recordarán que bueno, como no la estamos todavía llevando a infinito, esta suma, ¿cuánto nos da?</p>
+<p>Esta suma nos daba, si ustedes recordarán, 1 - 1 - alfa al siguiente exponente al que al máximo que llegamos acá sobre 1 - 1 - alfa. O sea, esto es lo que nos daba la suma, ¿cierto?</p>
+<p>Esto nos va a dar alfa, o sea, si ustedes no me creen, esto nos va a dar alfa. Entonces, este se va a cancelar con este y es como si de alguna manera se nos está dando 1 - 1 - alfa a la t + 1.</p>
+<p>O sea, nos falta, no suman uno los pesos a menos de que porque haya un término, o sea, falta adjudicar este peso y ya vamos a ver, falta este peso, ya vamos a ver este peso dónde está porque no suman uno. Pero claro, si t tiende a infinito, si efectivamente esto tiende a uno, obviamente bajo el supuesto de que alfa está entre cer y uno.</p>
+<p><img src="images/clipboard-2715557192.png" class="img-fluid"></p>
+<p>Ustedes recordarán la <strong><em>serie geométrica converge solamente en el abierto</em></strong>, ¿no?</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pero bueno, lo importante acá es que pareciera que faltara ese peso, una cosa importante, y que sí estamos tratando de emular algo en lo cual la suma de los pesos vale uno, como sucedía también en los dos modelos que teníamos acá,</p>
+</div>
+</div>
+<p>¿cierto? Bueno, pues si ustedes en realidad se ponen a pensar, o sea, si yo me pongo a pensar acá, voy a hacer una lineecita, bueno, esto era como un primer repaso.</p>
+<p>Si yo escribo entonces siguiendo esa línea, yo tengo por acá el pronóstico:</p>
+<p>de T + 1 dado t era igual a alfa * y sub t + alfa * 1 - alfa y sub t - 1 + alfa * 1 - alfa y sub t - 2. Dejémoslo hasta ahí, ¿cierto? Y yo llego y factorizo eh lo que quiero mostrarles acá. Si factorizo el 1 men alfa de aquí, o sea, esto me queda alfa y aquí factorizo 1 - alfa. 1 - alfa factor de me quedaría alfa y - 1 + alfa * 1 - alfa yt - 2 más es como si este término que yo tuviera aquí está.</p>
+<p>Miren que la fórmula empezaba, si estoy prediciendo un paso adelante, empezaba en la última observación con alfa y luego iba la anterior. La anterior aquí es como si estuviera prediciendo y convénzase de eso. Si no me dicen, esto está prediciendo con la información hasta t - 1 a y sub t. O sea, miren que no sé si todos lo alcanzan a ver allí, pero en realidad lo que estamos haciendo es prácticamente lo que decíamos acá.</p>
+<p>Tenemos un pronóstico con la información hasta el paso anterior y lo que vamos a hacer es actualizarlo con la información nueva para sacar el nuevo pronóstico de la nueva observación, un paso adelante. O sea, en cierta manera nosotros tenemos que esta ecuación de acá, o sea, que lo todo lo que estamos hablando de la distribución de pesos se podría escribir así.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Screenshot 2026-09-23 102402.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Ojo que la tarea esa de que nos falta de adjudicar algo de peso, ya ahorita más adelante la vamos a resolver. O sea, no suman uno todavía, pero ya vamos a ver cómo van a sumar uno. Pero es como si estuviéramos haciendo esto, o sea, esto es lo que antes llamábamos el pronóstico en el ejemplo del dibujito anterior. Y esto es lo que en ese dibujito llamaban la demanda, ¿no? Demanda. ¿Y cómo se combinaban lo que teníamos el último pronóstico con lo que nuevamente observamos para obtener un pronóstico en el tiempo futuro.</p>
+<p>De hecho, claro, eso no solo lo puedo hacer al final de la muestra, sino lo podría hacer también al interior de la muestra. O sea, esto está indicando que aquí estamos aplicando la misma fórmula al interior de la muestra, o sea, que este modelo es un modelo recursivo. ¿Se acuerdan que la clase pasada veíamos lo del recursivo? O sea, que necesita calcular pronósticos un paso, o sea, ir ir iterando</p>
+<p>Eh, entonces este pronóstico es de tipo recursivo y esta fórmula va a ser clave porque nos va a permitir eh hacer eso. El único problema que nosotros tenemos es que, claro, aquí tenemos puntos suspensivos, falta peso por adjudicar y nosotros nunca vamos a tener datos infinitos.</p>
+<p>Pues claro, cuando hacemos tender a infinito quiere decir que tenemos datos, muchos datos, pero no en realidad que tenemos datos infinitos, ¿no? Entonces</p>
+<p>vamos a solucionar ese problema. Vamos a solucionar ese problema acá. Entonces, bueno, miren una cosa importante. Vamos a suponer entonces claro, en al final de la muestra yo tengo mis daticos, como los hemos dibujado, ¿cierto? Yo tengo mis daticos. Y sub1, Y sub2, Yub 3, Y sub4, hasta Y subt, ¿cierto? Al final de la muestra para predecir a y sub t gorrito + 1 dado t, utilizo todo esto, ¿cierto? Usando la información del pronóstico que se ha venido antes y luego ese a su vez depende del anterior.</p>
+<p><img src="images/clipboard-4018569488.png" class="img-fluid"></p>
+<p>Miren ustedes que se forma una recursión, ¿cierto? En la cual nosotros desconocemos dos parámetros. el alfa, que ya sabemos que la idea es tratar de que los datos lo definan por ahí entre 0 y uno.</p>
+<p><img src="images/clipboard-2032584271.png" class="img-fluid"></p>
+<p>Y lo último que desconoceríamos es, bueno, si mis datos empiezan en y sub 1, si este es mi primer dato, pues en realidad no tendría un histórico.</p>
+<p>Este no lo conozco, que lo vamos a llamar L sub0 y va lo vamos a tratar como otro parámetro desconocido. Que faltan dos parámetros.</p>
+<p>Subero que haría las veces de la información previa que tendríamos antes de que empiece esta cadena de actualización y alfa que nos dice cuánto cuenta la información previa o cuánto cuenta cuánto cuesta cuánto cuenta o qué contribución tiene la información reciente.</p>
+<p>O sea, tenemos dos parámetros desconocidos. Si ustedes resuelven de manera usando el método de recursión van reemplazando eh llegamos a algo parecido a esto, a lo que teníamos por acá, ¿cierto? Pero con una diferencia es que ustedes habiendo dicho esto, que obviamente tenemos que iniciar en un punto y lo que desconocemos en es atrás lo vamos a llamar l sub y lo vamos a coser un parámetro.</p>
+<p>Ahí ya completamos nuestra ecuación porque ya no vamos a poner los puntos suspensivos, sino que miren que el peso que de alguna manera nos faltaba.</p>
+<p>Bueno, aquí de pronto de pronto me faltó una cosita el hecho de decir que de pronto acá era mejor poner T - 1, ¿cierto? Porque para llegar hasta la observación, entonces aquí nos va a quedar ese exponente de t. Sí, solo una un pequeño ajuste para decir que nuestros datos empiezan es en en uno y no en cero.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Ajuste de notación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bueno, aquí de pronto de pronto me faltó una cosita el hecho de decir que de pronto acá era mejor poner T - 1, ¿cierto? Porque para llegar hasta la observación, entonces aquí nos va a quedar ese exponente de t. Sí, solo una un pequeño ajuste para decir que nuestros datos empiezan es en en uno y no en cero.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Sí, falta ese peso 1 - alfa a la t. Pero miren ustedes que haciendo la recursión acá ya nos damos cuenta que ese peso se lo vamos a adjudicar a L sub0, a la cantidad que desconocemos, ¿cierto? Y así nos funcionaría para pronosticar, ¿cierto? esta ecuación de acá ya no va ya no va a depender de los pronósticos, sino va a depender de los valores observados y pues de los parámetros que desconocemos, alfa y LC.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sí, falta ese peso 1 - alfa a la t. Pero miren ustedes que haciendo la recursión acá ya nos damos cuenta que ese peso se lo vamos a adjudicar a L sub0, a la cantidad que desconocemos, ¿cierto? Y así nos funcionaría para pronosticar, ¿cierto? esta ecuación de acá ya no va ya no va a depender de los <strong>pronósticos</strong>, sino va a depender de los <strong>valores observados</strong> y pues de los parámetros que desconocemos, <strong>alfa y LC.</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Y eso también aplica intramuestra, o sea, yo podría recortar esto hasta el punto que yo quiera y empezar a hacerlo pues iterativamente o de manera secuencial entre a lo largo de la muestra, ¿no? La cuestión sería, bueno, <strong>sabemos que</strong> <span class="math inline">\(\alpha\)</span> <strong>y</strong> <span class="math inline">\(l_o\)</span> <strong>son parámetros desconocidos.</strong></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="cómo-es-correcto-estimar-esos-parámetros-exante" class="level1">
+<h1>¿Cómo es correcto estimar esos parámetros EXANTE?</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quisiera que ustedes, si están viendo este video y lo están viendo con calma, pausen y traten de pensar cómo podríamos estimar alfa y l sub0, que son los parámetros desconeos y tenemos la serie histórica y ya sabemos que los pronósticos, , son exante, eh pero sí vamos a usar toda la información para predecir eh los datos, o sea, para apreciar alfa y L0, ¿qué método propondríamos? ¿Cierto?</p>
+</div>
+</div>
+<section id="problemas-con-el-suavizamiento" class="level3">
+<h3 class="anchored" data-anchor-id="problemas-con-el-suavizamiento">Problemas con el Suavizamiento</h3>
+<section id="desventajas-del-modelo-de-savizamiento-exponencial" class="level4">
+<h4 class="anchored" data-anchor-id="desventajas-del-modelo-de-savizamiento-exponencial">Desventajas del Modelo de Savizamiento exponencial</h4>
+<ul>
+<li><p>No es un método, <strong>no podemos dar mínimos cuadrados, no estamos hablando de variables aleatorios</strong>, entonces no podríamos dar máxima verosilitud por ahora, ¿cierto?</p></li>
+<li><p>Y no no no son lineales, o sea, este este esta ecuación no es lineal en los parámetros, no altamente no lineal. Altamente no lineal.</p></li>
+</ul>
+<p>Eso fue la primera dificultad que enfrentó Brown. Entonces Brown no propuso un método de estimación muy robusto, sino que propuso unas reglas como, bueno, calcule unas reglas más que todo <abbr title="Atajos prácticos basados en la experiencia para resolver problemas de forma rápida, sin garantizar una solución óptima.">Heurístico<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></abbr>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Como para saber quién es el sub y quienes serian los alfas.<br>
+Bueno para tratar de estimar esos datos con base en la información ¿Vale?</p>
+<p>Eh, como les decía, ya las interpretacones las tenemos.</p>
+<p>Alfa en realidad lo que nos esta disciendo es que entre más grande pesa la información reciente.</p>
+</div>
+</div>
+<p>Si llegamos al límite de uno, estaríamos eh en el caso del pronóstico de persistencia. O sea, miren que si alfa vale 1, estaríamos en el pronóstico de persistencia.</p>
+<p><span class="math inline">\(\alpha=1\)</span> <strong><em>Es el pronóstico de Persistencia</em></strong></p>
+<p><span class="math inline">\(\alpha=0\)</span> <strong><em>Es el pronóstico de Persistencia</em></strong></p>
+<p>Pero ahora vale la pena interesar, preguntarnos qué pasa si alfa vale cero. Si alfa vale 0, miren que todos estos términos tienen alfa, o sea, todo esto desaparecería y en realidad y este término valdría uno.</p>
+<p><img src="images/clipboard-4249721124.png" class="img-fluid"></p>
+<p>Es decir, que el pronóstico sería L sub0 siempre, o sea, no tendríamos un pronóstico distinto. Este alfa sub es equivalente como a sacar una <strong>media estática</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> y no cambiarla.</p>
+<p><mark style="background-color: yellow;">Entonces en ambos casos se tienen como casos límite del suavizamiento exponencial simple.</mark></p>
+<p>Pero volviendo al problema de la estimación, eso se puede estimar por mínimos cuadrados, pero el problema es que no son <strong>mínimos cuadrados lineales</strong> y no es fácil.</p>
+<p><span class="math display">\[\hat{\beta} = (X^T X)^{-1} X^T y\]</span></p>
+<p><mark style="background-color: red;">No hay una fórmula como x traspuesto x a la men, x traspuesto y las derivadas, si ustedes tratan de derivar este problema para encontrar los puntos críticos y los luego los mínimos y máximos, van a llevarse expresiones feas. </mark></p>
+<ul>
+<li>Entonces <strong>no hay linealidad, no en los no en los parámetros</strong>, por lo menos, que es lo que nos interesaría acá.</li>
+<li>Además de eso, nosotros <strong>no podemos permitir que alfa tome un valor cualquiera.</strong></li>
+<li>Ya hemos dicho que alfa tiene que estar entre 0 y 1.</li>
+<li>Máximo aceptamos los extremos porque ya sabemos que representan otros esquemas.</li>
+<li>Entonces, sí hay restricciones, sí, alfa tiene que estar en tercer un Entonces esto complica. Esto hace que el problema</li>
+</ul>
+<p>de optimización sea altamente costoso. ¿Sí? Claro. Yo lo que voy a hacer es [ __ ] esta expresión que tengo acá,</p>
+<p><img src="images/clipboard-475422025.png" class="img-fluid"></p>
+<p>esta que tengo acá, esta, y reemplazarla acá.</p>
+<p><img src="images/clipboard-3484399196.png" class="img-fluid"></p>
+<ul>
+<li><p><mark style="background-color: yellow;">ir contrastando lo que va preciendo el modelo un paso adelante con lo que va observando y minimizar esta distancia al cuadrado, ¿cierto? Y así tratar de ver. </mark></p></li>
+<li><p>El problema es que por lo complejo del modelo, seguramente este problema de optimización no va a ser convexo, entonces no vamos a tener garantías de que el óptimo sea global, puede que sea local, pero no global, ni tampoco vamos a tener soluciones cerradas.</p></li>
+<li><p>Entonces, esa fue la principal desventaja en los orígenes del modelo, pero ahora que tenemos buenos eh <strong>algoritmos computacionales</strong>, se volvieron a retomar este tipo de modelos, ¿cierto? Miren que otra cosa importante aquí pareciera que estuviéramos la pregunta es, <mark style="background-color: #B2FFFF;"><strong>¿estamos tratando de estimar los parámetros con la idea de mejorar la bondad del ajuste o la habilidad del pronóstico?</strong></mark></p></li>
+</ul>
+<p>Hm, es una pregunta dura porque en realidad todos los datos se están usando, todos los datos de la muestra se están usando, ¿cierto? Uno podría entonces pensar en particionar los datos, ¿cierto? Ser más juicioso y particionar los datos y entrenar con una parte, encontrar los parámetros y luego sí mirar qué también desempeña.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pero por ahora estaríamos aquí nosotros. pensando es en realidad en <strong>bondad de ajuste</strong>, aunque no parezca.</p>
+</div>
+</div>
+<p>Pero por ahora estaríamos aquí nosotros. pensando es en realidad en <strong>bondad de ajuste</strong>, aunque no parezca.</p>
+</section>
+</section>
+</section>
+<section id="minimos-cuadrados-no-lineales" class="level1">
+<h1>Minimos Cuadrados No Lineales</h1>
+<p>Bueno, entonces aparece un método, o sea, yo no sé si lo vieron ustedes, pero hay <strong>mínimos cuadrados no lineales</strong>, <em>que es cuando la función no es lineal en los parámetros. Generalmente no se pueden solucionar.</em></p>
+<ul>
+<li><mark style="background-color: yellow;">Analíticamente, hay que buscar estimaciones por métodos numéricos. Hay unos paquetes en R que hacen esto, pero bueno, sepan ustedes que hay unas cosas.</mark></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Si uno pudiese introducir dentro de la cuestión unos errores que tengan distribución normal, podría darle buenas propiedades porque van a coincidir con los de máxima verosmiud, pero por ahora no hemos visto cómo hacer eso.</li>
+</ul>
+</div>
+</div>
+<p>O sea, estamos hablando de un método heurístico, pero no lo estamos basando en estadística.</p>
+<p><img src="images/clipboard-2273948158.png" class="img-fluid"></p>
+<p>Este modeloamiento exponencial simple, que es el que estamos viendo, se puede escribir de otra manera. ¿Sí?</p>
+<p>Y esta escritura va a ser importante sobre todo para cuando estemos moviéndonos a a modelos más complejos.</p>
+<p>Sí, vamos a pensar en que y eso tiene que ver mucho con las <strong>representaciones espacio estado.</strong></p>
+<p>Sí. Eh, una cosa importante, bueno, ya lo vamos a ver. Bueno, va a haber dos ecuaciones para el modelo de suavizamiento exponencial simple.</p>
+<ul>
+<li><p>Una que llamamos ecuación de pronóstico y otra que llamamos ecuación de nivel o de suavizado. Aquí es tonto porque en realidad la ecuación de pronóstico es [ __ ] el valor del nivel o del suavizado, ¿cierto? Miren que el suavizado está haciendo lo que ya hemos dicho, ¿cierto? Está cogiendo y ponderando la última observación con lo que traíamos del pasado y luego decimos que el pronóstico es L subt, ¿cierto?</p></li>
+<li><p>Entonces, en ese orden de ideas, cuando uno hace suavizamiento exponencial simple, el pronóstico de todos los pasos va a ser igual al último valor de L.</p></li>
+<li><p>O sea, en cierta manera este modelo no funciona bien. O sea, va a dar un pronóstico constante después de la parte de entrenamiento, después de haber visto los datos. va a haber un pronóstico constante para todos los pasos</p></li>
+</ul>
+</section>
+<section id="cuando-se-usa-este-suavizamiento-exponencial-simple" class="level1">
+<h1>Cuando se usa este Suavizamiento Exponencial Simple?</h1>
+<p>Bueno, ¿cuándo se debería usar este modelo? Pues cuando se tiene la <strong>serie no tiene tendencia ni tampoco tiene estacionalidad.</strong></p>
+<p>Ahorita vamos a ver las variantes para cada uno de esos casos, ¿vale? Pero va a ser importante que guardemos esta representación y la tengamos allí en mente.</p>
+</section>
+<section id="ejemplos" class="level1">
+<h1>Ejemplos</h1>
+<section id="ejemplo1" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo1">Ejemplo1</h2>
+<p>Bueno, miremos algunos ejemplos. Entonces, por ejemplo, en este primero, la serie original es la negra.</p>
+<p><img src="images/clipboard-2524229276.png" class="img-fluid"></p>
+<ul>
+<li><p>Y ustedes se dan cuenta, si el valor de alfa es muy cercano a uno, pues más o menos ya nos estamos acercando, como es el caso de la curva roja, casi al pronóstico de persistencia, a replicar un <strong>paso con un rezago de un paso eh lo que estaba pasando en la serie, ¿cierto?</strong></p></li>
+<li><p><strong>Entonces, miren que alfa = 0.9 se parece mucho a a al pronóstico de persistencia.</strong></p></li>
+<li><p>En cambio, <span class="math inline">\(\alpha =3\)</span>, TR que es la curva azul, sí va actualizando, pero no está cambiando tanto. Claro. Y digamos de alguna manera trata de seguirle la la dinámica a la serie un poco más rezagado, por lo que no actualiza tanto. <code>Está actualizando solamente el 30% de su información cada vez que que se corre el algoritmo.</code> Entonces, a pesar de que hubo un cambio de nivel, como ustedes pueden ver ahí, sola con alfa a los errores más grandes de alfa, se logra dar cuenta, pues un poco tarde, pero se logra dar cuenta del <strong>cambio de nivel q</strong>ue sucedió ayer. Entonces, esta es la gráfica uno. Sí.</p>
+<h2 id="ejemplo-2-" class="anchored">Ejemplo 2-</h2></li>
+<li><p>Miremos por acá otro caso. Aquí vemos más claramente lo del efecto del del del <strong>parámetro (de suavizamiento exponencial) alfa.</strong> Miren que los datos son la negra.</p>
+<p><img src="images/clipboard-3377166756.png" class="img-fluid"></p></li>
+<li><p>Datos= la curva negra.</p></li>
+<li><p>Y a medida, claro, con <span class="math inline">\(\alpha=0.1\)</span>, tenemos una curva que en realidad prácticamente lo que está haciendo prácticamente lo que está haciendo es como un suavizado.</p></li>
+<li><p><strong>Valores pequeños de alfa :</strong> Pues ténganme en presente que alfa eh al valores pequeños de alfa son equiparables como a una media, es decir, estamos siendo casi como una especie de filtrado por un promedio móvil.</p></li>
+</ul>
+<p>Entonces, ahí uno ve que pues <mark style="background-color: yellow;">borra ruido&lt;&gt;, pero no nos sirve tanto como para pronosticar y a medida que alfa va aumentando, cada vez replicamos de <strong>manera rezagada</strong>, obviamente, el valor de la serie, ¿no? Sí.</mark></p>
+</section>
+<section id="ejemplo-serie-con-tendencia-no-usar-suavizamiento-exponencial" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-serie-con-tendencia-no-usar-suavizamiento-exponencial">Ejemplo (Serie con Tendencia) (No usar Suavizamiento Exponencial)</h2>
+<p>Eh, una cosa importante, si uno coge una serie que tenga tendencia, o sea, una serie con tendencia, como es el caso:</p>
+<p><img src="images/clipboard-214711393.png" class="img-fluid"></p>
+<p>de esta serie eh, que está aquí en negro, ustedes se pueden dar cuenta que por más de que la serie igual trata de de que de preservar un poco la dinámica general, siempre va a rezagar.</p>
+<p>Entonces, por eso es que no sirve para nuestro caso para para series con tendencia, porque si bien mal que bien, claro, nosotros queremos pronosticar, pero nunca vamos a estar al nivel prácticamente este pronóstico o este método siempre va a <mark style="background-color: yellow;">subprosticar <mark></mark> en el caso de y la curva, el área roja lo que nos está mostrando es cómo sistemáticamente el pronóstico, en este caso eh con suavizamiento exponencial está por debajo siempre de la serie original, es decir, siempre nos va a llevar a su pronosticar, entonces por eso no se debería usar para series con tendencia ni tampoco.</mark></p>
+</section>
+<section id="ejemplo-2-series-estacionales-tampoco-usar-suavizamiento-exponencial" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-2-series-estacionales-tampoco-usar-suavizamiento-exponencial">Ejemplo 2 (Series Estacionales) (Tampoco usar Suavizamiento Exponencial)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-3684133514.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ul>
+<li><p>Pues bueno, en las series estacionales tampoco se debería usar, o sea, sí sonal, aquí estamos hablando de un ejemplo estacional.</p></li>
+<li><p>Claro, visto ya después de pasado un tiempo, pues uno lo que logra ver es que sí logra, o sea, logra es mostrarnos más o menos en la borrar o filtrar algo de ruido, pero no nos va a hacer, o sea,</p></li>
+<li><p>miren que otra vez la serie en cierta manera generalmente está muy por arriba o muy por abajo, o sea, es decir, no nos va a capturar muy bien eso.</p></li>
+<li><p>Por eso hay variantes del suavizamiento exponencial que son la doble y la triple en las cuales ya ese tipo de cosas se arreglan, ¿vale?</p></li>
+</ul>
+</section>
+<section id="suavizamiento-exponencial-doble-hold-hecho-para-tendencias-no-modela-estacionalidad-con-este-si-se-puede-pronosticar-pero-de-manera-lineal" class="level2">
+<h2 class="anchored" data-anchor-id="suavizamiento-exponencial-doble-hold-hecho-para-tendencias-no-modela-estacionalidad-con-este-si-se-puede-pronosticar-pero-de-manera-lineal">Suavizamiento Exponencial Doble (Hold) (Hecho para Tendencias) (No modela Estacionalidad) (Con este si se puede Pronosticar pero de manera lineal )</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-3882176776.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Entonces viene el suavizamiento exponencial doble propuesto por Hold, en - level: el cual él dice, “Vamos a modelar un nivel que era lo que ya traíamos en el L. El L de hecho es de level, ¿cierto? - Pendiente: Y vamos a modelar una pendiente, es decir, aquí vamos a estar guardando como hacia dónde se está moviendo la serie. Hagan de cuenta como la posición, ¿cierto? (Velocidad o Tasa de Cambio)</p>
+<p>Y en el otro vamos a estar guardando la velocidad, o sea, la tasa de cambio, de tal manera que cuando vayamos a pronosticar tengamos la posición y tengamos también la manera de de mirar algo de tasa de cambio.</p>
+<ul>
+<li><p>Ahí nos damos cuenta que los pronósticos ya no van a ser constantes, sino van a tener la forma de una línea recta.</p></li>
+<li><p>Entonces, si pronostico h pasos adelante, b sub t, la última pendiente que tengamos va a ser las veces de de la pendiente de la recta y L subt va a ser las veces del <strong>intercepto</strong>.</p></li>
+</ul>
+<p><mark style="background-color: yellow;"> Ya sabemos que con el eh suavizamiento exponencial doble vamos a tener vamos a poder modelar tendencias &lt;&gt;, ¿vale?</mark></p>
+<p>&gt; ” <strong><em>Suavizamiento Exponencial = Modelar Tendencia</em></strong>” &gt;</p>
+<hr>
+<section id="aumentarán-los-parámetros" class="level3">
+<h3 class="anchored" data-anchor-id="aumentarán-los-parámetros">Aumentarán los Parámetros</h3>
+<ul>
+<li><p>La única cuestión acá es que los parámetros van a aumentar. Ya no solo vamos a tener el alfa, que alfa lo que va a estar guardando en cierta manera es, bueno, alfa es cuánto cuenta la información reciente, 1 men alfa es cuánto cuenta la información pasada, pero la información pasada ya no va aser solo de el nivel, sino también la tendencia que llevábamos del valor pasado y la ecuación de pendiente, que esa sí nos va a mirar como de alguna manera el cambio, o sea, cuánto cuánto a con beta, otro parámetro beta asterisco, vamos a guardar cuál fue el último cambio, como la tasa de cambio de la posición, ¿cierto? del nivel y vamos a mirar si actualizamos esa esa velocidad que traíamos o no con otros.</p></li>
+<li><p><span class="math inline">\(\alpha\)</span></p></li>
+<li><p><span class="math inline">\(\beta\)</span> entre 0 y 1</p></li>
+<li><p>Aparecen dos valores iniciales. Ya no podemos tener únicamente el L sub0 del nivel inicial, sino también tenemos que inicializar la pendiente con un valor B sub0.</p>
+<p>Entces aparecen más parámetros, ¿cierto? Eh, bueno, pues ya lo que les decía, la tendencia y en general todo se va a modelar por una combina la tendencia, la ecuación dependiente o de tendencia se va a modelar por la combinación entre el nivel dónde estábamos y hacia y la pendiente, como con qué velocidad nos estamos moviendo.</p>
+<ul>
+<li>Este tampoco modela estacionalidad, ¿vale?</li>
+</ul></li>
+</ul>
+<section id="ventaja" class="level4">
+<h4 class="anchored" data-anchor-id="ventaja">Ventaja</h4>
+<ul>
+<li>cuando vayamos a pronosticar nos va a dar es una línea recta dependiendo de si el último <span class="math inline">\(b _t\)</span>es positivo o negativo, va a ser una línea recta creciente o decreciente. H pasos adelante.</li>
+</ul>
+</section>
+<section id="desventaja" class="level4">
+<h4 class="anchored" data-anchor-id="desventaja">Desventaja</h4>
+<ul>
+<li><p>Sí, pero pues de alguna manera el hecho de que la <strong>tendencia sea lineal</strong> como que algunos lo criticaban también bastante y aparece entonces lo que se llama el <mark style="background-color: yellow;"> suavizamiento exponencial doble con tendencia amortiguada. </mark></p>
+<p>O sea, en vez de poner un h</p>
+<h1 id="suavizameinto-exponencial-doble-con-tendencia-amortiguada-damped-ayuda-a-modelar-tendencia">Suavizameinto exponencial Doble con Tendencia Amortiguada (Damped) (AYUDA A MODELAR TENDENCIA)</h1></li>
+<li><p>acá le ponemos otro parámetro.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-1248783911.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ul>
+<li><p>Otro parámetro <span class="math inline">\(\phi\)</span> que va a modelar como el amortiguamiento que va a recibir esa esa tendencia, ¿cierto?</p></li>
+<li><p>Y pues eso nos va a ayudar a a controlar un poco. Miren una cosa, ya no va a ser lineal.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>O sea, lo que nos está diciendo esto, si yo quiero pronosticar, miramos acá, y sub t + 1, dado t, sería el último LT que tengamos más fi por b sub t, ¿cierto? Cuando vayamos a hacer eh y sub t + 2, dado t, va a ser l sub tt +cuad por b sub tt. O sea, es decir, lt y b sub tt van a quedarse quietos cuando acabemos el entrenamiento, pero este parámetro fi, que también lo tendremos que estimar, miren que aparece un nuevo parámetro y ese sí tiene que estar entre cer y uno. Ya vamos a ver por qué. Eh, pues tenemos la cuestión allí de de que se nos va a ayudar un poco a ver hacer un comportamiento más realista de cómo puede ir cambiando eh el pronóstico. ¿Qué pasa si yo tomo el límite? Si a mí me da por hacer el límite cuando h tiende a infinito de y sub tt + h dado t, o sea, h se está moviendo infinito. En el caso anterior, si a mí me hubiera dado por tomar el límite cuando h tiende a infinito de y sub t + h dado t, esto me estaría diciendo que esto es más infinito, ¿cierto?</li>
+</ul>
+</div>
+</div></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>si b sub t es positivo o menos infinito si b sub t es negativo. Y bueno, l sub tt en el caso de que b sub t sea cer pues suponiendo que no es cer miren que de eso siempre diría que el crecimiento se mantiene en un mismo sentido. Eh, perdón, b subt mayor menor que perdón, perdón. En cambio, aquí en este caso, si ustedes toman el límite, vamos a hacer aquí rápidamente, ustedes son unos duros sacando límites, es h la que se va infinito, o sea, tendríamos si reemplazo sería L sub t + cuad + a la h y todo esto por b subt. Miren que en realidad la única parte que depende de h es este pedacito de acá. O sea, en realidad me tocaría analizar qué le pasa. Lo que necesitaría analizar es el límite. El resto de cosas se van a quedar constantes, pero cuando tomo el límite, cuando h tiene infinito, tendrías que sacarle el límite a eh a esta suma, ¿sí? Que otra vez es una suma geométrica, ¿cierto? donde la razón es fios que fi esté entre 0 y un para que en caso tal de que yo vaya a pronosticar muy lejos en el tiempo, pues esta suma no explote como le pasaba el caso anterior. ¿Qué nos da esta suma? Pues acuérdense, si estamos asumiendo que fi está entre 0 y 1 y tomamos el límite cuando h tiende a infinito, esto nos va a dar 1 sobre 1 - phi. Es decir, sí va a crecer, pero se va a estabilizar en algún punto y va a dejar de crecer. O sea, que en el infinito el pronóstico va a ser L sub t al final. Entonces, el límite cuando h tiene infinito de y sub t + h dado t, nos va a quedar l sub t y toda esa suma que era lo que dependía de esto, va a quedarnos más 1 sobre 1 - * b sub tt, no más. Ese va a ser el límite de esa suma de elementos que tenemos allá. ¿Sí?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Eh, y ese va a ser el pronóstico límite, es decir, no va no va a explotar como en otros casos.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Vemos ahí rápidamente que efectivamente el suavizamiento exponencial simple es un caso particular cuando tenemos que f vale cer. Sí, o sea, bueno, cuando fi vale, la cuestión es que creo que cometí un error acá. Ah, perdón. Está mi esta suma?</p>
+<ul>
+<li>Esta suma, miren que empieza en fi, o sea, la suma en realidad empieza en uno.</li>
+</ul></li>
+<li><p>Miren, yo confiado de que tenía bien la matemática, ¿no? Esta suma va así. Entonces, esto en realidad nos da eso. Fhi. Entonces, efectivamente, si fi es igual a 0, estaría estaríamos como caso límite teniendo el Entonces, miren, fi 0 estaría dándonos el suavizamiento exponencial simple.</p></li>
+</ul>
+<!-- -->
+<ul>
+<li>Y de hecho, bueno, si quieren ponerlo, pues claro, fiar el valor de cero. En este caso, a partir de límites, estaríamos diciendo que fi tiende a ceroy si fi tiende a uno, estaríamos recuperando el suavizamiento exponencial doble porque fi 1 nos daría h veces y ahí podría volver a explotar.</li>
+</ul>
+<!-- -->
+<ul>
+<li><p>Entonces, en este caso, si vemos que la estimación de finos da muy cercana a cero, es posible que en ese modelo se actualice bien el comportamiento eh de suavizamiento exponencial simple.</p></li>
+<li><p>Y si Fi =1, si bien no es uno, nos estaría indicando que podría hacerse suavizamiento exponencial doble clásico.</p></li>
+<li><p>El fi también está jugando un papel por acá, si ustedes se fijan, está atenuando la pendiente, está descontándole algo a la pendiente como para que el efecto de la pendiente como que pierde forma, como que se fricciona.</p></li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-479514928.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="por-eso-se-llama-damp-amortiguamiento" class="level2">
+<h2 class="anchored" data-anchor-id="por-eso-se-llama-damp-amortiguamiento">Por eso se llama Damp = Amortiguamiento</h2>
+<ul>
+<li><p>Por eso se llama damp. Damp inglés es como eh amortiguado, es decir, que de alguna manera se va va decayendo ese efecto y no le pasa lo que le pasaba al anterior, ¿vale? Eh, bueno, bien. Entonces, también está esta variante, esta también ayuda a modelar tendencia. Aquí hay un ejemplo.</p></li>
+<li><p>Miren lo que les mencionaba ahoritica. Vamos a mirar primero este gráfico. Aquí estamos viendo suavizamiento exponencial simple, el que solo tiene alfa y el de Hold que tiene alfa y beta.</p>
+<p><img src="images/clipboard-3124286821.png" class="img-fluid"></p></li>
+<li><p>Miren ustedes que cuando hacemos el de el rojito, si bien la la serie primero pues trata de llevarle el nivel, siempre está subpronosticando en la mayoría de casos y al final cuando acabamos el entrenamiento se queda constante porque el pronóstico del soaveamiento exponencial simple, pues ese es el la cuestión. cambi en que el suavizamiento exponencial doble, bueno, aunque dudo un poco que sea una línea recta tan perfecta, eh, pues lo que sí nos dice es que este no es amortiguado. Eh, cuando se acaba el entrenamiento, pues el pronóstico en ese caso, dependiendo si el último B subt era positivo, pues se va a quedar un pronóstico que nos va a indicar y no más o menos nos va a estar mostrando es la línea de tendencia de sobre todo de los últimos cambios en la serie, ¿vale?</p></li>
+<li><p>Eso es el suavizamiento. Bueno, aquí les adelanto de una vez lo que le pasa. O sea, así como el suavizamiento simple tiene problemas y no logra primero replicar el comportamiento de la serie ni llevarle el ritmo, no lo logra.</p>
+<h1 id="suavizamiento-exponencial-triple-bueno-en-componente-estacional">Suavizamiento Exponencial Triple (BUENO EN COMPONENTE ESTACIONAL)</h1></li>
+<li><p>Y cuando vamos a pronosticarnos a un pronóstico constante, el suavizamiento doble, este es el doble, tampoco le va muy bien cuando lo comparamos con el triple en el caso de que haya una un componente estacional.</p></li>
+<li><p>Miren acá las esta serie de acá, la serie no se alcanza a ver bien, es una serie negra que tiene un comportamiento periódico anual, ¿cierto? Es decir, hay un comportamiento estacional y le estamos ajustando dos modelos.</p></li>
+<li><p><img src="images/clipboard-1230662388.png" class="img-fluid"></p></li>
+<li><p>En verde le estamos ajustando un modelo de hold que igual logra, o sea, intramuestra más o menos sí logra llevarle el ritmo, ¿no?</p></li>
+<li><p>No nos queda mal, pero cuando va a pronosticar él saca de una vez su línea recta, ¿cierto? saca su LT cuando se acaban los datos más HBT y eso es lo que termina pronosticando.</p></li>
+<li><p>En cambio, ya vamos a ver cómo funciona Hold Winters o el servicamiento exponencial triple. Sí replica, como ustedes pueden ver ahí ver ahí en azul el comportamiento cíclico que debería mantener esa serie a futuro.</p>
+<h3 id="justificación-de-por-que-hacer-estadística-descriptiva-para-las-series-para-ver-sus-componentes-y-saber-que-ajustarle" class="anchored">Justificación de por que hacer Estadística Descriptiva para las Series, para ver sus componentes y saber que ajustarle</h3></li>
+<li><p>Vale, ahí vamos viendo que efectivamente dependiendo vale la pena hacer estadística descriptiva al inicio, ¿cierto? Y después de haber hecho estadística descriptiva, eh, notar que si la serie tiene sus componentes, y vamos a hacer uno de estos módulos, pues saber usar cuál es el más adecuado.</p></li>
+<li><p>En este caso, ¿no? Aparece entonces lo que llamamos ya la versión de Hold Winters, que hay dos versiones. Esta va a tener ahora más ecuaciones. Antes teníamos suavizamiento exponencial simple, solo tenía ecuación de pronóstico y bueno, ecuación de nivel, monitoreaba el nivel, ¿cierto? su avizamiento exponencial doble empezó a monitorear a parte de pronóstico y nivel también pendiente y este va a tener una ecuación para la estacionalidad. este se complica un poco más, o sea, más o menos. Por eso vamos pues de manera incremental, eh, porque</p>
+<h1 id="suavizamiento-exponencial-triplehold-winters">Suavizamiento Exponencial Triple(Hold-Winters)</h1>
+<p><img src="images/clipboard-2140971789.png" class="img-fluid"></p>
+<h1 id="hold-winters-additivo">Hold Winters Additivo</h1>
+<p><img src="images/clipboard-2258100284.png" class="img-fluid"></p>
+<p><img src="images/clipboard-2391308443.png" class="img-fluid"></p></li>
+<li><p><strong>Suavizamiento exponencial triple</strong>, este es el <strong>aditivo,</strong> porque hay dos variantes, está el <strong>aditivo</strong> y el <strong>multiplicativo.</strong></p></li>
+<li><p>Vamos a hablar un poco del <strong>aditivo</strong>. En la tendencia, miren que va a sumar unos, o sea, pues está el último nivel más el efecto de la tendencia más un efecto debido a la estacionalidad.</p></li>
+<li><p><strong>Estacionalidad :</strong> Esa es es de seasonality. Y la estacionalidad la van a monitorear con otro parámetro gama que nos va a decir cuánto cuenta o cómo se actualiza la información de la estacionalidad a medida que vamos avanzando en el tiempo.</p></li>
+<li><p>Así como beta controla cómo se actualiza la pendiente y alfa controla cómo se actualiza el nivel. Entonces todos van influyendo allí. ¿Vale? Aparecen más parámetros. Bueno, y ya ahorita les voy a explicar un poco más en detalle, pues aparecen. Ya es claro que necesitamos alfa, beta, gama.</p></li>
+<li><p><strong><em>Antes necesitábamos, me voy a devolver acá, un valor de inicialización de la pendiente y otro valor del del nivel, ¿cierto? Pero bueno, lo mismo acá en el en el en el suavizamiento exponencial sin amortiguamiento, pero aquí miren que aparece un valor inicial de tendencia, uno de uno de perdón, uno de nivel, uno de pendiente, pero aparecen varios valores iniciales en la estacionalidad porque me toca aprender esto de aquí está reflejando que toca aprender al menos un ciclo estacional, ¿sí? Entonces toca inicializar no solo un valor inicial, sino un valor inicial. Y ahorita lo vamos a ver por varios ciclos.</em></strong></p>
+<p><img src="images/clipboard-3628833253.png" class="img-fluid"></p>
+<h3 id="ejemplo" class="anchored">Ejemplo</h3>
+<ul>
+<li><p>Entonces, vamos a mirar un ejemplito, o sea, porque aparecen varias cositas, ¿no? Eh, voy a tratar de explicarles un par de cositas. Miren que aparece, bueno, suponemos que la estacionalidad es cada m periodos, o sea, digamos, si estoy hablando:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Estacionalidad</th>
+<th>Mensual</th>
+<th>M=12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Trimestral</td>
+<td>M=4</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Semestral</td>
+<td>M=2</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Y aparece este K, que pues miren que este K es importante,¿eh? Ese K, ¿dónde lo terminamos usando nosotros?</p></li>
+</ul></li>
+</ul>
+<p>Acá. Miren, este K de acá lo vamos a terminar usando acá, pero quiero explicarles un poco por qué. Un poco por qué. Entonces, miren qué importante. Vamos a tomar un ejemplo de una serie mensual. Les voy a hacer un ejemplito. Vamos a hacer un ejemplito. Ah, perdón. No, no, no, no, no, no, no era esto lo que quería hacer. Quería insertar una página. Vamos a tomar el ejemplo.</p>
+</section>
+</section>
+<section id="ejemplo-1" class="level1">
+<h1>Ejemplo</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Entonces, m = 12 nos está diciendo que nuestra serie es mensual. Vamos a suponer que hay estacionalidad. Entonces, nuestros parámetros, ¿quiénes van a ser? Bueno, tenemos un L0, que es el valor inicial del nivel, ¿sí? un B0 que va a ser el inicial de la pendiente. Pero miren ustedes que para los valores iniciales de la estacional decimos que tenemos ese subir desde 1 - m hasta desde 1 - m hasta 0. Es decir, este conjunto, ¿a quiénes tiene acá? Tendríamos a ese. Bueno, si m vale 12, 1 m nos da s -11, ese -10, ese -9, así hasta ese sub. Si ustedes cuentan, aquí habría 12 valores iniciales que estarían caracterizando un ciclo inicial de estacionalidad.</p>
+<p>Ciclo inicial de estacionalidad. Sí. Entonces, no me sirve, no voy a, no puedo tener únicamente un valor inicial, me toca tener m valores iniciales, ¿cierto? Y ahorita vamos a ver pues cómo hace el modelo, pero aparecen muchos más parámetros cuando hacemos el método de Pa Winters.</p>
+</div>
+</div>
+<p><img src="images/clipboard-3981442012.png" class="img-fluid"></p>
+<p>Bueno, aquí están las ecuaciones, no las voy a volver a copiar y hay tres valores allí.</p>
+<p>Quiero que nos concentremos en la ecuación de Ah, bueno, nos dice adicionalmente que K, bueno, esto era como en parámetros, ¿cierto?</p>
+<p>Vamos a poner acá. Entonces, tenemos, ya sabemos que m es 12 y nos dice que nos toca calcular un k, que va a ser el valor de h cuando vayamos a pronosticar -1 sobre m. Y en la parte todos conocen lo que hace esta función, ¿no? La función piso. Entonces, yo le paso tres. Bueno, me va a buscar el entero menor o igual al número que yo le estoy pasando allí. Entonces, esto es tres, ¿no? 2.8. Esta función me lleva a dos, no es aproximación, no es redondeo, ¿no? Solamente como por curiosidad. Hay que tener cuidado con los negativos. Bueno, esto nos daría cer, por ejemplo, -1.3, algunos erróneamente dirían que esto es -1, pero -1 es más grande que -1.3. Como busca el entero por debajo, esto nos da es -2, ¿no? Pues para que lo recuerden ahí en su baúl de recuerdos cómo funciona la función eh piso. Pero entonces, mir, vamos a ver.</p>
+<p><img src="images/clipboard-521843315.png" class="img-fluid"></p>
+<p><img src="images/clipboard-3317691075.png" class="img-fluid"></p>
+<p>Nosotros cuando acabamos el entrenamiento llegamos hasta este nivel de acá, pero eh estamos tratando de pedir el horizonte 17.</p>
+<p><img src="images/clipboard-3889432837.png" class="img-fluid"></p>
+<p><img src="images/clipboard-4221090501.png" class="img-fluid"></p>
+</section>
+<section id="suavizamiento-exponencial-triple-o-con-tendecia-y-estacionalidad-hold-winters-modelo-multiplicativo" class="level1">
+<h1>Suavizamiento Exponencial Triple o con Tendecia y Estacionalidad (Hold-Winters) (Modelo Multiplicativo)</h1>
+<p><img src="images/clipboard-2157003326.png" class="img-fluid"></p>
+<p>Aparte de que también eso en el caso multiplicativo. En el caso multiplicativo, ¿vale? Porque aquí la estacionalidad, miren que vuelve y entra por acá. Bueno, ahí se van actualizando cada uno y lo importante es entender que están tratando de aislar las cosas.</p>
+<p><img src="images/clipboard-3489453618.png" class="img-fluid"></p>
+</section>
+<section id="ejemplo-de-una-serie" class="level1">
+<h1>Ejemplo de una serie</h1>
+<p><img src="images/clipboard-1396601180.png" class="img-fluid"></p>
+<p>Miren acá esta serie, esta serie que ustedes ven aquí, eh, estos son los valores reales. O sea, los valores reales son estos. O sea, empiezan. Esto es tomado del libro de Hitman, por si alguno eh quiere consultar. La serie empieza en el en el primer trimestre de 1998. Acuérdense que como parámetros tenemos, bueno, alfa, beta y gama. Y fuera de eso tenemos y como esta serie es trimestral necesitamos cuatro valores de como la frecuencia como m es cu necesitamos cuatro valores iniciales de estacionalidad que eso los aprende el modelo solos. Un valor inicial dependiente y un valor inicial de nivel. Y a partir de eso él empieza a calcular con las ecuaciones y con los valores observados, los nuevos valores, y al final pues empieza a generar pronósticos. Sí, que después de esto, o sea, el entrenamiento acaba acá acaba el entrenamiento, ¿sí? Y ahí luego empieza a usar la ecuación y se puede ver pues en esa ecuación yo no sé si les traje el gráfico. Sí, ahí se puede ver como bueno es era la serie que estaban analizando Hitman y era la del turismo.</p>
+<p>Se ve claramente como hay ciclos estacionales y nos damos cuenta que también hay tendencia y miren que el modelo de H Winters, tanto el aditivo como el multiplicativo, como que hacen un buen trabajo, es decir, ¿no?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-1485476544.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p><img src="images/clipboard-1466961304.png" class="img-fluid"></p>
+<ul>
+<li><p>El $\alpha$ asi de pequeño nos esta diciendo que no se actualiza tanto solo en un 26% con el valor nuevo</p></li>
+<li><p>La pendiente <span class="math inline">\(\beta\)</span> tampoco se actualiza mucho</p></li>
+<li><p>La Gamma tambien nos dice que tanto se actaliza el cicl, es muy pequeño</p></li>
+</ul>
+<p><img src="images/clipboard-1451757925.png" class="img-fluid"></p>
+<p>Si se hubiese usado el modelo aditivo, ahí podemos ver que en realidad el alfa tan pequeño nos está diciendo que el nivel no se actualiza tanto, solo en un 26% con el valor nuevo. La pendiente tampoco se actualiza mucho, es decir, de alguna manera eh no se está actualizando tanto. Y el gama, bueno, yo no sé si discutimos que era gama. Gama también en cierta manera nos dice qué tanto se actualiza el ciclo. Miren que en sí el ciclo pues no es siendo que no se actualice mucho, pero se actualiza, pero no no a niveles como no no como un pronóstico de persistencia que ya la última observación es lo observado. Lo que interes esto nos está diciendo de alguna manera que la estacionalidad es más o menos estable, o sea, lo que él estimó acá al inicio es más o menos estable en el tiempo.</p>
+<p>Sí, mucho más estable que los demás componentes, porque el gama de actualización es muy muy pequeño, ¿cierto? Entonces, no le no cambia mucho, o sea, como que el comportamiento periódico según ese modelo no cambia mucho. Bueno, aquí les mostraba esta gráfica en la que se ajustan ambos, tanto el aditivo como el multiplicativo.</p>
+<section id="y-cómo-definimos-cual-es-el-mejor" class="level2">
+<h2 class="anchored" data-anchor-id="y-cómo-definimos-cual-es-el-mejor">Y Cómo Definimos Cual es el mejor?</h2>
+<ul>
+<li><p>Y la pregunta sería, bueno, ¿y cómo definimos cuál es mejor? ¿Cierto? Esta pregunta es sobre todo también de reflexión.</p></li>
+<li><p>Si alguno quiere para ir repasando, pues puede ir pensando en en en qué, en pausar el video, pero uno lo que haría, ¿cierto? Bueno, si alguno ya está pausando el video, bueno, lo puede hacer también es decir, bueno, tal vez ah, voy a particionar mis datos,</p></li>
+<li><p>voy a hacer algo, aunque aquí hay un problema con esta serie, es que si yo la particiono y dejo unos datos de validación o de prueba, este serie histórica no, miren que no tiene tendencia tan marcada.</p></li>
+<li><p>La tendencia empieza en los últimos periodos. Eso es crítico a veces en series de tiempo. Casi que no me puedo dar el lujo de particionar para ver qué modelo es mejor usando los mismos datos que ya tengo, porque la serie está cambiando de comportamiento, ¿cierto?</p></li>
+<li><p>De pronto puedo cortar más bien por acá</p>
+<p><img src="images/clipboard-2469369888.png" class="img-fluid"></p></li>
+<li><p>y aprovechar de pronto con ventana de ancho fijo para que este pasado no cuente tanto y y al final logremos como puede que sí, o sea, puede que sí, pero de todas maneras pues ahí hay una cuestión importante sobre eh que no podemos, o sea, no se ve tan natural que ya habíamos hecho antes por el hecho de que la serie está apareciendo que está cambiando de de de de sí de de fenómeno.</p>
+<h1 id="otra-solución">Otra Solución</h1></li>
+</ul>
+<p>Otra cosa importante, se podría hacer eh con tendencia amortiguada, por ejemplo, la versión multiplicativa. También se puede hacer la aditiva con versión amortiguada, pero pues la única diferencia es que aparece también el fi.</p>
+<p><img src="images/clipboard-143212260.png" class="img-fluid"></p>
+<p>Miren que el número de parámetros ha crecido bastante. alfa, beta, gama, fi, los valores iniciales de estacionalidad, los valores iniciales de tendencia y de nivel, o sea, aparecen bastantes bastantes cosas allí y y pues obviamente <strong>solo a medida que los datos lo requieran es que deberíamos recurrir a esto, ¿no</strong>?</p>
+</section>
+</section>
+<section id="universo-de-modelos" class="level1">
+<h1>Universo de Modelos</h1>
+<ul>
+<li><p>Entonces, importante, no vimos muchas posibilidades, o sea, vimos algunas, ¿cierto? Vimos algunas, pero quiero que sepan que esto hace parte de un universo de modelos, ¿sí?</p>
+<p><img src="images/clipboard-1982923911.png" class="img-fluid"></p></li>
+</ul>
+<!-- -->
+<ul>
+<li>en los cuales uno podría especificar esta anotación es tomada de Hitman<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, o sea, y esto lo propusieron en algún momento, dependiendo de como uno quiera modelar, o sea,</li>
+</ul>
+<!-- -->
+<ul>
+<li><p>la clave está en que el <strong>nivel</strong> pues siempre va a estar incluido, porque incluso en el en el en el suavizamiento exponencial simple, pues hay nivel, o sea, el nivel no tiene eh discusión, pero la <strong>tendencia puede estar puede estar aditiva o puede estar puede no estar, perdón, puede ser aditiva o puede ser aditiva con amortiguamiento</strong>. ¿Sí? Entonces, miren que aparecen tres posibilidades para la tendencia.</p>
+<p><img src="images/clipboard-389489732.png" class="img-fluid"></p></li>
+</ul>
+<p>Y para el componente estacional puede aparecer, no puede no aparecer como en whole win, en whole oave exponencial doble y en suavizamiento exponencial simple, puede aparecer aditivo o puede aparecer multiplicativo. Pues empiezan a aparecer todas las combinaciones posibles. Nosotros no las vimos todas, vimos solamente algunas. Entonces, ya sabemos que, por ejemplo, suavizamiento exponencial simple, algunos lo podrían denotar como nesta anotación. Sí.</p>
+<p>Entonces, porque NN indicaría N, ninguno para tendencia, ninguno para estacionalidad. El el módulo lineal de hold se podría ver como a subn porque está modelando la tendencia aditiva, no hay componente estacional.</p>
+<p>Eh, y el el amortiguado pues sería A sub DN de Hold porque otra vez la tendencia está amortiguada, pero no hay componente estacional. ¿Cuáles vimos adicionales?</p>
+<p>Vimos whole winters aditivo, en el cual pues sería aa porque tanto tendencia como estacionalidad van en componente aditivo. Vimos AM cuando tendencia es aditiva, multiplicativo y también ADM. Pero miren que en realidad habría nueve posibilidades. Hubo unas que no, en cierta manera nosotros no estábamos considerando. Por ejemplo, como esta, como de pronto modelos en los cuales eh haya estación, estos que están acá, haya estacionalidad, pero no haya tendencia.</p>
+<p>Siempre incorporamos, supusimos que si había que que en todos los modelos en los que hubiese estacionalidad tenía que haber tendencia, pero esos tres, esos dos que están allí que no tienen tendencia, solamente estacionalidad, podrían ser otra posibilidad. Entonces, ¿por qué esta taxonomía es importante?</p>
+<p>Porque en realidad ya en los paquetes uno podría ajustar cualquiera de los nueve</p>
+<p>, ¿sí? O sea, aparecen muchas más posibilidades. De hecho, por acá eh también tomado del libro de Hitman, aparecen ya las ecuaciones que se utilizarían en los nueve casos, dependiendo ya de si es NN, NA, NM, a,</p>
+</section>
+<section id="casos" class="level1">
+<h1>9 Casos</h1>
+<p><img src="images/clipboard-400068194.png" class="img-fluid"></p>
+<p>bueno, todas las nueve posibilidades, ¿vale?</p>
+<p>Eh, aquí están todas las ecuaciones. Claro, maravilloso, porque ya tenemos más posibilidades.</p>
+</section>
+<section id="descripción-de-la-serie" class="level1">
+<h1>Descripción de la Serie</h1>
+<ul>
+<li><p>Una primera manera de saber si necesitamos todo eso es hacer análisis descriptivo de nuestra serie y ver si tiene tendencia, ver si tiene estacionalidad, si puede llegar a ser multiplicativa o aditiva.</p></li>
+<li><p>Bueno, todo ese tipo de cosas, ¿cierto? Para descartar algunos, pero aún así le pueden quedar uno varias posibilidades. Entonces, la cuestión es que ah, bueno, se me olvidó.</p></li>
+<li><p>Entonces, bueno, te pueden quedar uno varias peleas. Aquí tenemos nueve. Pues resulta que la verdad creo que fue Hitman y ellos también generalizaron este enfoque, o sea, ahoritica estábamos enfocados en modelos que llamaríamos TS.</p></li>
+<li><p><img src="images/clipboard-4086268119.png" class="img-fluid"></p></li>
+<li><p>Estos modelos de acá son modelos TS porque lo único que está en discusión es cómo va a ir la tendencia y cómo va a ir la estacionalidad, ¿cierto? Pero hay una generalización mayor que son los ETS.</p></li>
+<li><p>Y ojo que ETS no es <strong>enfermedad de transmisión sexual</strong>,</p></li>
+<li><p><img src="images/clipboard-2416442729.png" class="img-fluid"></p></li>
+<li><p>es <strong>E de error, T de trend y s de seasonal</strong>. Entonces, una generalización que hicieron fue la de eh considerar, bueno, un componente de error, si el error se suma o se multiplica y con esos errores, si uno también les pone distribuciones, podría ser, por ejemplo, máxima verosimilitud, podría ser otras cosas, ¿cierto?</p>
+<p><strong>EL ERROR SE PUEDE MULTIPLICATIVO / ADITIVO POR QUE SE LE PUEDE ASOCIAR UNA DISTRIBUCIÓN</strong></p></li>
+<li><p>Pero por ahora pues hay los errores pueden entrar de manera aditiva o de manera multiplicativa. O sea, que cuando ya uno especifica un modelo, uno diría, por ejemplo, algo así,</p>
+<p><img src="images/clipboard-1451159003.png" class="img-fluid"></p></li>
+<li><p><strong>eso estaría indicando aditivos los errores, aditiva a la tendencia y aditiva a la estacionalidad.</strong></p></li>
+</ul>
+<p>¿Sí? O sea, las tres. Ahora lo indicaríamos con una terna. Los que teníamos antes, eh, bueno, hay una hay una equivalencia entre ellos y los modelos ETS, ¿sí? Pues, o sea, ustedes pueden buscar allí claramente cómo se pueden reescribir, pero pues no, en este momento no nos interesa, pero lo importante es que ya no son nueve, sino son <strong>18 posibilidades</strong> las que tenemos, ¿cierto?</p>
+<section id="supongamos-errores-normales" class="level3">
+<h3 class="anchored" data-anchor-id="supongamos-errores-normales">Supongamos Errores Normales</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bueno, ahí es donde viene el punto. Esos errores, si uno cuando uno introduce esos errores si suponemos que esos errores son normales, es posible utilizar <strong>máxima verosimilitud</strong> para estimar los parámetros con ventajas de poder hacer <strong>inferencias sobre los coeficientes,</strong> porque por el método de estimación que habamos visto hasta ahora, solamente obtenemos una estimación puntual, no vamos a hacer inferencia y pues de una vez solamente utilizamos esos modelos como eururísticas para pronósticos, pero no podríamos ser <strong>inferencia</strong>, ¿cierto?</p>
+</div>
+</div>
+</section>
+<section id="beneficios-de-usar-máxima-verosimilitud" class="level2">
+<h2 class="anchored" data-anchor-id="beneficios-de-usar-máxima-verosimilitud">Beneficios de Usar Máxima Verosimilitud</h2>
+<p>También podríamos cuantificar la incertidumbre alrededor de esas estimaciones. Entonces, son las ventajas que tendríamos si usamos <strong>máxima verosimilitud</strong>, ¿cierto? Ahí les puse cuáles como para que ustedes piensen por qué por qué máxima verosimilitud nos trae esas ventajas. Y es por el hecho de que ustedes recordando sus otros cursos que los estimadores de <strong>máxima verosimilitud</strong> tienen unas distribuciones asintóticas particulares.</p>
+<ul>
+<li><p>No importa el modelo que sea, desde que se cumplan ciertas condiciones de regularidad vamos a tener esas condiciones. Eh, hay que tener cuidado porque si uno estima por máxima resnitud o por mínimos cuadrados, como vimos antes, no van a coincidir, sobre todo cuando los errores son multiplicativos. Y es el hecho de que eh bueno, hay problemas cuando uno toma logaritmo, ¿se acuerdan? Porque para los errores multiplicativos toca transformar los modelos para usar mínimos cuadrados. Entonces, bueno, ahí aparecen unas cosas. Ese por qué tiene que ver con eso.</p></li>
+<li><p>También se pueden relajar algunas de las restricciones sobre alguno</p></li>
+<li><p>s de los parámetros para que para mejorar un poco las relaciones con otros modelos. Bueno, eh no, en realidad no podemos considerar todas las posibilidades, pero la pregunta seguiría siendo, bueno, ¿y cómo escogemos? Una manera haciendo estadística descriptiva, ¿cierto? Hay algunas combinaciones que se ha visto que son bastante inestables numéricamente y son estas tres que ustedes ven ahí.</p></li>
+<li><p><img src="images/clipboard-2947580560.png" class="img-fluid"> <strong>(EVITAR ESTAS)</strong></p></li>
+<li><p>Entonces, uno las trata de evitar, ¿cierto? Pero pues como ya les pusimos o bueno, se puede ponerles distribuciones a los errores, por ejemplo, normales o cosas por el estilo, se puede se suele usar o Hyndman <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, el autor del libro sugiere utilizar, por ejemplo, <strong><em>el AIC eh para tratar de de escoger un</em></strong></p></li>
+<li><p>Y mira, “Profe, pero el AIC es</p></li>
+<li><p><strong>.</strong> Y sí, en eso estamos totalmente de acuerdo y lo hemos discutido en la clase, pero Hinman prueba este teorema que nos dice que sobre todo si uno va a pronosticar solamente un paso adelante, o sea, muy cerca de la ventana de entrenamiento, minimizar el AIC o buscar el modelo que minimiza el AIC es asintóticamente equivalente a minimizar el error cuadrático me dio un paso adelante.</p></li>
+<li><p>Es decir, equivaldría el modelo que seleccione el AIC, el con el más bajo AIC, puede eh garantizarnos que el modelo va a <strong>predecir bien un paso adelante</strong>, o sea, no nos garantiza mucho más que un paso adelante, o sea, pero ya nos da evidencia de que el AIC no solamente, si bien está orientado principalmente a bondad de ajuste, pues no se queda ahí, puede mostrarnos más. Vale,</p></li>
+<li><p>finalmente, pues bueno, ya con un supuesto distribucional, podemos ir más adelante, que lo hablábamos la vez pasada, a veces un valor puntual puede quedársenos corto dependiendo del prop del propuesto que queremos. Podemos incluso crear intervalos de pronóstico, ¿cierto?</p>
+<h1 id="ic-para-modelos-aditivos">IC para modelos Aditivos</h1></li>
+<li><p>Cuando el modelo es aditivo, a a través de la normalidad se pueden utilizar prácticamente como resultados muy similares a a lo que uno está acostumbrado acá.</p></li>
+<li><p>Y la cuestión es que este percentil de acá, pues algunos autores usan el de una normal estándar, pero hay que tener cuidado. Sí, yo preferiría de pronto simular esa distribución y luego ver qué percentil</p></li>
+<li><p>tomar, pero la cuestión es que se podrían construir, sobre todo en modelos con errores aditivos, se podría construir el intervalo muy fácilmente.</p>
+<h1 id="ic-para-modelos-multiplicativos">IC para modelos multiplicativos</h1></li>
+<li><p>Si es multiplicativo, es un poquito más complicado. Tocaría, se viene una simulación, Monteclos, de eso de pronto hablamos más adelante. y sacamos percentiles de la distribución y armamos con dos percentiles o dos cuantiles lo que sería el intervalo.</p></li>
+<li><p>Pero bueno, por ahora nosotros sepan que esto se puede hacer de pronto en el siguiente video que estamos haciendo algo de código y mirando cómo funcionan estos modelos, podemos ver algo de de cómo de cómo qué de cómo eh ay, o sea, de cómo hacer este tipo de <mark style="background-color: yellow;"> <strong>elecciones del del percentil de la distribución</strong> </mark>. cierto, o sea, cómo sacar intervalos de predicción a partir de los modelos eh de suavizamiento exponencial y los modelos ETS, ¿cierto? Podríamos mirar eso.</p></li>
+</ul>
+</section>
+</section>
+<section id="formulas-para-la-varianza-del-error-estándar-de-predicción" class="level1">
+<h1>Formulas para la Varianza del error estándar de Predicción</h1>
+<p>Eh, pero bueno, sepan que se pueden aplicar estas fórmulas. Aquí están las fórmulas para algunas combinaciones de cómo sería <mark style="background-color: yellow;"> la varianza del error estándar de predicción de algunas combinaciones. </mark>. -Entonces, ahí están deducidas, también están en el libro de Hitman, pues para por si alguno las quiere consultar.</p>
+<p><img src="images/clipboard-2483553521.png" class="img-fluid"></p>
+<ul>
+<li><p>Vale, con esto pues damos por visto una un primer tipo de modelos. En el próximo video les voy a mostrar e algunas cositas relacionadas con eh la implementación en R, un poco de la metodología y de estos modelos, pues para que lo tengan ahí presente.</p></li>
+<li><p>Vamos a a movernos, o sea, esto eso cierra el módulo dos de nuestro curso. Aquí estaríamos empezando y vamos a trabajar unos minuticos sobre el módulo 3.</p>
+<p><img src="images/clipboard-4081110700.png" class="img-fluid">-</p></li>
+<li><p>que es el de modelos Arma, que estos modelos ya son modelos estadísticos y pues tienen todo un sustento en la probabilidad.</p></li>
+<li><p>Estos otros en realidad no nacieron así, pero se les ha visto ciertas equivalencias. Más adelante vamos a ver que algunos métodos de suavizamiento tienen que ver con con otro tipo de esto, pero aquí sí necesitamos modelos estadísticos y necesitamos pues obviamente teoría de probabilidad para entender algunas cosas.</p></li>
+<li><p>Entonces, bueno, lo que quiero convencerlos, me quedan unas cuantas diapositivas, unas cuantas muchas, pero no me voy a demorar mucho en esto, es que, ¿por qué necesitamos más si ya en la regresión teníamos de pronto algunas cosas? <strong>Se acordarán de que la regresión tenía cinco supuestos</strong>, pues más o menos lo de haber visto así. Eh, uno de ellos importante era el que no hubiese multicolinealidad.</p>
+<p><img src="images/clipboard-3109792306.png" class="img-fluid"></p></li>
+<li><p>Lo otro era que pedíamos que la componente sistemática del modelo pues fuera lineal en los parámetros y</p></li>
+<li><p>pedíamos también que los <strong>errores fueran de media a cero,</strong> de variancia sigma cuadrado y que no hubiera correlación entre ellos. Más o menos eso es lo que teníamos allí. Y nosotros decimos,</p>
+<h1 id="teorema-de-gaus-markov">Teorema de Gaus Markov</h1></li>
+<li><p>“Ah, bueno, estamos ya entrando en el mundo estadístico, se olvídense un poco de lo que hablamos ahí al final del otro video. Si yo si ustedes vieron en su curso de <strong>regresión el teorema de Gaus Markov</strong>, <mark style="background-color: yellow;"> vieron que los estimadores de mínimos cuadrados que se obtienen bajo esa lógica y bajo esos supuestos y sin ni siquiera hablar de normalidad tienen muy buenas propiedades,</mark>. ¿cierto?</p>
+<h2 id="insesgado-blue" class="anchored" data-anchor-id="formulas-para-la-varianza-del-error-estándar-de-predicción">Insesgado = blue</h2>
+<h2 id="insesgado-normalidad-umbue" class="anchored">Insesgado + Normalidad = umbue</h2></li>
+<li><p>De hecho, <strong>ese estimador es el de los mejores lineales sin sesgados,</strong> ¿sí? O sea, es el blue y si hay normalidad es aún mejor porque es el umbue.</p></li>
+<li><p>Para ese tipo de cosas. La pregunta sería, bueno, ¿y si será que yo no puedo usar todas las técnicas de regresión en series de tiempo? Vamos a ver, vamos a ver rápidamente.</p></li>
+<li><p>Ah, bueno, aquí está la segunda parte. El teorema de Gusmov tiene dos partes.</p></li>
+<li><p>Esta parte no pide normalidad y ahí nos dice que este señor es el blue, o sea, él es el mejor.</p></li>
+</ul>
+<p><img src="images/clipboard-3196114408.png" class="img-fluid"></p>
+<ul>
+<li><p>O sea, si aquí tuviéramos todos los estimadores, todos los posibles estimadores de los coeficientes de la regresión y aquí están los incesgados y dentro de los incesgados tenemos un subconjunto más chiquito que son los lineales.</p>
+<p><img src="images/clipboard-366766682.png" class="img-fluid"></p></li>
+<li><p>Lineales es porque procesan la información de manera lineal. Miren que esta y aparece aquí lineal. Este señor Blue es el mejor de ellos. O sea, ya de todos estos no tengo que ponerme a buscar más. Si propongo algún otro que sea lineal e inciesgado, no va a poder ser mejor en varianza que este señor que está acá, ¿cierto? Eso sin suponer normalidad.</p></li>
+<li><p><img src="images/clipboard-3983619436.png" class="img-fluid"></p></li>
+<li><p>Miren que por ahora hemos supuesto que los errores tengan distribución normal. Ustedes en regresión luego vieron, ah, pero si suponemos normalidad y luego obamente, claro, la logramos verificar nosotros, el resultado es aún más fuerte porque y aparece la</p>
+<h1 id="segunda-parte-de-la-versión-de-gaus-markov">Segunda parte de la versión de Gaus Markov</h1>
+<p><img src="images/clipboard-2031618983.png" class="img-fluid"></p></li>
+<li><p>segunda versión del teorema de Gaus Marcov y es que ese estimador de antes bajo normalidad ya no es solo el blue, es el umbue. Es decir, este señor de acá ya no ya deja de ser. Veamos de pronto este grafiquito acá. Vamos a ver si nos cabe por acá. Esto lo va a pasar muy rápido, pues porque mi objetivo no es concentrarme ahí, pero en ese diagramita sabíamos que por acá estaba este señor Beta Gorro, era el mejor, pero vamos a poder ampliar el conjunto sobre el que decimos que él es el mejor, ya va a ser el mejor de todos estos. Claro, dentro de los sesgados puede que haya alguien mejor, pero al menos dentro de los inesgados si añadimos la normalidad y la normalidad se verifica en nuestros datos, el señor es el mejor, ¿cierto? Eso es lo que sabíamos nosotros en regresión, ¿cierto? Ahora bien, nosotros ya habíamos trabajado eh y ahí para allá vamos a las en <strong>las ecuaciones de diferencia</strong>, o sea, piensen que hasta ahoritica o lo que vemos en el módulo uno <strong>no tenía el error, ¿cierto?</strong></p></li>
+</ul>
+<p># Ecuación en Diferencia Estocástica (V.A + el error)</p>
+<p>Ahora las escribí en mayúscula para indicar que vienen de variables aleatorias y añado el error importante, o sea, estamos añadiendo el error. Esto sería una ecuación en diferencias estocástica. Sí, estocástica eh, por el error. Sí, resulta que uno diría, “No, profe, pero eso se parece a un modelo de regresión.” O sea, yo podría pensar que si estas y esta la llamo x1, esta la llamo x2, esta la llamo x k, pues puedo armar una matriz x y hacer todo lo mismo que yo visto antes, ¿no? No tiene mucha dificultad.</p>
+<p><img src="images/clipboard-758209032.png" class="img-fluid"></p>
+<p>Bueno, sí, no, en ese sentido, eh, sí se puede, pero aparecen un par de cositas allí. Primero, si mi serie tenía datos desde un hasta t, o sea, teníamos t datos, vamos a darnos cuenta que dependiendo de cuando escribamos esto como un modelo de regresión, pues, por ejemplo, este vector de y ya no va a tener, ya no va a ser t por 1.</p>
+<p><img src="images/clipboard-2411989793.png" class="img-fluid"></p>
+<p>Ya vamos a ver por qué. Porque piensen que para poder yo ajustar, para poder hacer un ajuste de regresión, tengo que poder escribir, bueno, dado una observación y sus valores pasados, que serían las variables si yo empiezo con y sub 1, tengo valores pasados de ella, ¿no?</p>
+<p>Entonces me toca empezar desde un valor, por ejemplo, y subk + 1 para garantizar que tengo todos los valores pasados de ella, ¿cierto? Y con esos valores pasados, pues logro eh utilizarlas como variables explicativas para que esta sea x1, x2 hasta xk, ¿cierto? Luego y subk + 2 utilizo entonces un paso atrás, dos pasos atrás, etcétera.</p>
+<p>Entonces, miren que este objeto ya perdió observaciones, ya no tiene t observaciones, ahora tiene, piénsenlo, si no tiene t - k por 1, ¿cierto? perdimos las primeras K <strong>porque no para ellas no tendríamos variables explicativas.</strong></p>
+</section>
+<section id="cómo-yo-escojo-ese-k" class="level1">
+<h1>¿Cómo yo escojo ese k?</h1>
+<p>Bueno, entonces dependiendo si escogemos un K muy grande perder muchas opciones. <strong>Nuestro tamaño de muestra se va a reducir bastante en el contexto de la regresión</strong>. Si ustedes recuerdan la las columnas, bueno, la x es una matriz que tiene t - k de filas porque es una por cada individuo, una por cada respuesta y en las columnas tendríamos pues k + 1, ¿cierto?</p>
+<p>porque son k valores pasados y el intercepto que lo pondríamos con unos allí, ¿cierto? Y finalmente en beta pues tendríamos k + un entradas por uno, ¿no? Entonces, miren que ah no, profe, listo. Salvo lo que usted nos dijo de que se perdían algunas observaciones, eh, ya ahí está la codificación. Yo puedo hacer x traspuesto x a la -1, x traspuesto y y obtener la estimación de beta y de pronto aprovechar el hecho de que Gaus Markov 1 y 2 me dicen que ese es el mejor estimador y ya todo lo volví una regresión y felices todo. Nos vamos temprano hoy para la casa. Pues no, hay varias cosas allí que tenemos que entrar</p>
+<p>a mirar. Primera cosa importante si es es sobre la especificación en los supuestos de regresión. <strong>¿Será que un modelo de regresión sí puede llegar a cumplir los supuestos de una regresión?</strong> Vamos a ver. Vamos a ver. Y segundo, ¿cómo interpretamos los coeficientes? Esarán que beta, beta0, beta 1 ten unas interpretaciones por un cambio en una unidad de una de una variable eh, ¿qué tanto cambia la respuesta? ¿Sí? Vamos a ver eso. Entonces, primera cosa importante, empecemos <strong>evaluando el supuesto de multicolinealidad.</strong></p>
+</section>
+<section id="supuesto-de-multicolinealidad" class="level1">
+<h1>Supuesto de Multicolinealidad</h1>
+<p>¿Ustedes recuerdan qué era la multicolinealidad? La multicolinealidad era que las columnas de x no tuvieran información redundante, o sea, no estuvieran altamente correlacionadas. diría, “No, listo, pues yo no quiero que eso esté correlacionado.” Pero miren una cosa importante.</p>
+<ul>
+<li><p>Si yo digo que esta columna, por ejemplo, esta que está acá y esta que está acá, no tienen una correlación alta, bueno, listo, maravilloso, bien solucionado el problema.</p>
+<p><img src="images/clipboard-952089278.png" class="img-fluid"></p></li>
+<li><p>Pero es que nosotros sí queremos que las x tengan una respuesta altamente correlacionada con la y, que nos ayuden a explicar la y. ¿Y qué creen? Miren que esta y sub k + 1 aquí está en el lugar de las y, pero aquí pasa al lugar de las x. Entonces, yo digo que esas dos columnas, si yo quiero que por un lado estén altamente correlacionadas entre ellas, eh perdón, no estén altamente correlacionadas entre ellas, indicaría que tampoco podrían estar correlacionadas con la respuesta porque algunos valores, estos valores a medida que yo voy cambiando de instante pasan a un lugar de las X, cosa que no pasaba en el modelo de regresión, ¿cierto?</p>
+<h4 id="problema-grave" class="anchored">Problema Grave</h4>
+<p>“<strong><em><code>Qué no haya multicolinealidad</code></em></strong>” -&gt; :(</p>
+<p>“<strong><em><code>Qué haya multicolinealidad</code></em></strong>” -&gt; :(</p></li>
+<li><p>Y ese es uno de los problemas graves. Entonces, podría, o sea, si no hay multicolinealidad,</p></li>
+<li><p>Si este es nuestro caso, carita triste.</p></li>
+<li><p>Sí. Y si sí la hay, si hay multicolinealidad también, carita triste, porque quiere decir, sí, la respuesta es buena, <strong>pero el problema es que vamos a tener problemas de inestabilidad de la inversa de x traspuesto x, ¿cierto?</strong></p>
+<h2 id="no-se-puede-fijar-las-x-no-siempre-es-tan-correcto" class="anchored" data-anchor-id="supuesto-de-multicolinealidad">No se puede Fijar las X (no siempre es tan correcto)</h2></li>
+</ul>
+<p>Ahora, ¿qué pasa con los otros supuestos? ¿Los recuerdan así? No, me imagino que seguramente no, porque nosotros en estadística no nos centramos mucho en esta parte de acá que dice que eh bueno, nosotros siempre hablamos de que las X están fijas por diseño, cosa que pues en la vida real en unos estudios no puedo fijar las X. Sé que las observo más fácilmente, pero no las puedo fijar. Entonces, eh esto de aquí hay una palabra que se llama <strong><em><code>exogeneidad</code>. La usan mucho los economistas para indicar que las x y el error no pueden estar correlacionado</em></strong>s</p>
+<ul>
+<li><p><strong>Valor Esperado del error</strong> Eso la no correlación nos ayuda a implicar que por ende el valor esperado del error siempre sea cero sin importar qué valor tomen las x.</p></li>
+<li><p><strong>La varianza del error:</strong> Que la varianza del error siempre sea sigma cuadrado sin importar qué valores toman las x y que la covariancia siempre es cero. Eso está indicando en cierta manera.</p>
+<p><strong><em><code>O sea, la exogeneidad indica que el error es independiente de las X.</code></em></strong></p></li>
+</ul>
+<p>¿Sí? Listo. Y la regresión en realidad eso se puede cumplir fácilmente. Ahora, volviendo aquí al al a la cuestión de eh si los errores en realidad son independientes de las X, miren que por esta propiedad de que lo que en un caso era la Y luego se termina volviendo la X, eso se rompe automáticamente porque este error, por ejemplo, yo cojo el error para el instante t hace parte de y sub t, pero cuando yo hable de y sub t + 1, voy a escribirlo por acá, y sub t + 1 = sub0 + sub 1 y sub tt más el error en t + 1.</p>
+<p>Eh, resulta que bueno y aquí podría también estar y sub t - 1, etcétera, pero esta señora, o sea, las y, o sea, no vamos a poder garantizar que el error sea independiente de todas las y porque tendría que ser independiente de todas las yes.</p>
+<p>Sí, porque las yes en cierta manera, o sea, es que todo el proceso de errores y el proceso de las variables explicativas sean independientes y por ende, como las y a veces van a pasar a ser el lugar de x, bueno, x en el sentido de la regresión, eso hace que esta señora siempre está correlacionada con esta, ¿cierto? Ambas son variables aleatoras, pero luego va a haber un problema porque esa y sub tt va a estar va a estar va a ser parte de las x acá y entonces al ser parte de las x violaríamos el supuesto de no correlación con el error, ¿cierto?</p>
+</section>
+<section id="modelos-de-series-de-tiempo-dufren-de-endogeneidad" class="level1">
+<h1>Modelos de Series de Tiempo dufren de endogeneidad</h1>
+<p>O sea, los modelos de series de tiempo van a ser <strong><em><code>endógenos</code></em></strong> por naturaleza. No van a independientes el error y las variables que llamamos independientes no se va a poder dar, ¿cierto? Bueno, hay otros problemas allí. Entonces, bueno, hay unas cositas allí relacionadas con eso que no voy a entrar en el detalle. Aquí está el problema de <strong><em><code>endogeneidad</code></em></strong>. Cuando una o varias variables explicativas están correlacionadas con el término error. No tiene por qué ser en el mismo en el mismo instante. Desde que algún error esté correlacionado con alguna de las yes, eso va a suceder, ¿vale? El problema es que eso va a generar varias bastantes problemas, ¿sí? porque va a generar que los parámetros no se estimen bien, va a generar <strong><code>inconsistencia.</code></strong></p>
+<p>Entonces, daña completamente el marco metodológico de los mínimos cuadrados para los modelos. Desde de inmediatamente lo daña, pues bueno, luego lo arreglamos y lo tratamos de recomponer, pero lo daña.</p>
+<p>En modelos de regresión, aquí hay unos ejemplos, pues no voy a entrar en el detalle de cuándo se puede dar eso, no solo en series de tiempo, o sea, en series de tiempo, o sea, Moraleja, estos son notas de de clase de mi curso de regresión o de modelo. Esto es moraleja. Acá es que los modelos de series de tiempo sufren de <strong><em><code>endogeneidad</code></em></strong>.</p>
+<p>Sufren de <strong><em><code>endogeneidad</code></em></strong> por la por lo que no porque esa correlación se da. Aquí hay otros ejemplos, no me voy a detener en ellos, pues porque no nos interesa para este curso. Pero hay ejemplos en otros contextos de regresión donde o por ejemplo, ¿qué otras cosas pueden causar error? Eh, cuando hay, por ejemplo, efectos de retroalimentación, o sea, la X influye en la Y, pero la Y influye en la X, es otro caso.</p>
+<p><img src="images/clipboard-2557040602.png" class="img-fluid"></p>
+<p>Cuando hay error de medición, la X en realidad no se puede medir sin error de medición, eso también va a generar endogeneidad. Bueno, y otros, ¿sí? O sea, también cuando hay como confusión con otras variables, o sea, hay varios efectos.</p>
+<p>Esos son algunos ejemplos de lo que pasa allí con ese supuesto de de endogeneidad, pero no vamos a entrar en el detalle. Y<strong>a lo decíamos, los modelos autorregresivos son endógenos y el problema va a estar por acá porque cuando yo modelé a YTs -1, ella estaba correlacionada con el pero es que ya estaba jugando el rol de la Y, pero luego pasa a jugar el rol de una de las x en la en el siguiente tiempo y eso va a hacer que ella al ser función de -1</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-3444270678.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>pues esté correlacionada con -1 y eso nos genera eh problemas, ¿no? Entonces, bueno, no podemos justificarnos en el teorema de Gaus Markov para decir que vamos a usar todo siempre por regresiones, no podemos y que las garantías de los estimadores son buenas porque nuestros <strong>estimadores van a ser sesgados y seguramente van a ser inconsistente</strong>s.</p>
+</section>
+<section id="propiedad-que-salva-la-patria-la-estacionariedad" class="level1">
+<h1>Propiedad que salva la patria = La estacionariedad</h1>
+<p>Y eso. Vamos a ver que si aparece esta otra propiedad, que no la hemos formalizado, pero ya pronto la vamos a formalizar, <mark style="background-color: yellow;"> <strong>la estacionariedad, si se puede probar consistencia y distribución normal asintótica de los betas en un esquema de regresión, o sea, sí se podría traer bajo estacionaridad el esquema de la regresión a las series de tiempo.</strong></mark></p>
+<p>Ya voy a acabar acá teoría de procesos estocásticos. Solamente voy a introducir esto rápidamente.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-467819363.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ul>
+<li><p>Miren ustedes que ah en la diferencia estadística, si ustedes recuerdan, todo eran muestras aleatorias, ¿no? Entonces decíamos, es decir, suponíamos que las variables eran independientes y que todas tenían la misma distribución. ¿Por qué pedíamos esto? No era capricho, era que, claro, si todas las variables me hablan del de una distribución común, pero a la vez son independientes, o sea, la información que me aportan es de de igual valor porque no me están repitiendo información. pues era mucho más fácil estimar las cosas, pero ustedes se van a dar cuenta que en esta línea en la que ustedes vienen, la que bueno, uno ve inferencia, luego ve regresión, empieza a relajar algunas cosas y y trata de hacerlas más flexibles, ¿cierto?</p></li>
+<li><p>Eh, pero al mismo tiempo no trata de borrar todo lo anterior, sino trata de seguirlo usando. Entonces, por ejemplo, cuando ustedes pasan análisis de regresión, ustedes aprendieron bien, pueden pausar el video y me responder otra vez si otra vez la independencia y la idéntica distribución se tiene.</p></li>
+</ul>
+</section>
+<section id="se-mantiene-la-independencia" class="level1">
+<h1>Se mantiene la Independencia</h1>
+<p>La independencia, sí, generalmente, bueno, excepto mínimos cuadrados generalizados o cosas por el estilo, vamos a mantener la independencia, pero lo que queremos relajar es la idéntica distribución. O sea, ya no decimos aquí, por ejemplo, en inferencia estadística, si mi era salario, decíamos que todas las personas nos hablaban o la observación del salario nos hablaba de la misma del la misma distribución común de salario, o sea, que no es cierto.</p>
+<ul>
+<li><p>Aquí decimos, no es que cada persona puede tener un salario distinto dependiendo de otras características. Su género lastimosamente, bueno, su formación, sus años de experiencia, ¿cierto? hablo del género lastimosamente pues por las cuestiones de las brechas de género en salario y todo eso, pero bueno, o sea, yo puedo tratar de explicar esas diferencias y por eso ya no necesito hablar de idéntica distribución. Alguno dirá, “Pero entonces botamos toda la basura, todo lo que aprendimos en inferencia.” No, miren que ahí todavía hablábamos de muestras aleatorias.</p></li>
+<li><p>¿Dónde hablamos de una muestra aleatoria? en el error. Entonces, ustedes se dan cuenta, si tratamos de mantener algo de lo pasado eh para tratar de que no perder las técnicas que ya hemos aprendido, pero irlas generalizando y haciéndolas y haciéndolas más más generales, ¿cierto?</p></li>
+</ul>
+</section>
+<section id="en-espacial-y-series-la-identica-distribución" class="level1">
+<h1>En espacial y series (la identica distribución)</h1>
+<ul>
+<li><p>Ahora, cuando ustedes se mueven ya series de tiempo o estadística espacial, la idéntica distribución ya no necesariamente la mantenemos. Vamos a ver que nosotros podemos decir que cada variable tenga su media distinta y de hecho pues condicionalmente a su pasado va a pasar eso o en estadística espacial que en cada punto del espacio del proceso la la media cambie, pero ahora vamos a relajar también la independencia, ¿cierto?</p></li>
+<li><p>Pero no es que estemos votando lo anterior a la basura, sino que vamos a hacer lo más general y pues vamos a llegar allá. Nos toca introducir nueva teoría, nos toca hablar de procesos estocásticos y todo eso, pero en algún momento volveremos a lo que necesitamos, las muestras aleatorias y lo que aprendimos tanto en regresión como en inferencia.</p></li>
+<li><p>O sea, no funcionan ni se trasladan de manera inmediata porque estamos en un marco en el cual estamos tratando de generalizar, ¿vale? Entonces, bueno, miren que vamos evolucionando.</p></li>
+<li><p>La pregunta sería, ¿los cambios son graduales o repentinos? se pierde toda la teoría desarrollada anteriormente, pues la verdad no. Los cambios son graduales, vamos modificando de a poquito las cosas, ¿cierto?</p></li>
+<li><p>Eh, no se pierde la teoría desarrollada. Ya les dije, por más de que igual estemos generalizando las cosas, la idea siempre es tratar de volver a usar herramientas que ya tenemos.</p></li>
+<li><p>Yo les preguntaría, ¿será que habrá otro instante por acá? un, perdón, un instante siguiente eh aquí en las los cuadritos que tenemos acá, en el cual ya no solo pedimos que ni no haya independencia, no haya idéntica distribución, sino que cada variable pueda tener con una observación una distribución distinta.</p></li>
+<li><p>Pues bueno, hay que ir paso a paso porque si yo ya supongo que cada variable viene de una distribución distinta con parámetros distintos y que no son independientes y que todas son eh de distribuciones distintas, eso va a ser un problema inferencial difícil.</p></li>
+<li><p>O sea, yo tengo que tratar de tener algo en común para aprovechar la información conjunta de todas. Entonces, no podemos irnos ya de una vez. Esto sería como una exageración, ¿cierto? Pensar que todo cambia con cada observación que tenemos y sobre todo tendríamos la información necesaria para poder algo hacer.</p></li>
+<li><p>Entonces, ¿por qué es importante? sobre todo en series de tiempo, porque en series de tiempo, c<strong>uando veamos que una serie de tiempo es un proceso estocástico</strong>, eh, o viene de un proceso estocástico, no vamos a poder pensar en esa idea de repetir el proceso.</p>
+<h2 id="ejemplo-pib" class="anchored" data-anchor-id="en-espacial-y-series-la-identica-distribución">Ejemplo PIB</h2></li>
+<li><p>O sea, yo observé el PIB de Colombia, PIB de Colombia en 2007, en enero, pero no puedo decir, “Ay, voy a repetir el experimento, voy a volver a aprender y apagar la máquina de Colombia para ver si me da otro pip distinto acá y lograr aprender esa distribución en este instante tiempo.” O sea, pensar en este tipo de cosas en que la distribución va cambiando instante instante de manera abrupta a medida que el tiempo va evolucionando no es tan razonable. nos toca mantener algunos elementos comunes, otros que sí pueden ir cambiando, pero mantener algunas cosas comunes para poder aprenderlas con base en los datos.</p></li>
+<li><p>Bueno, aparece por fin la definición de <strong>proceso estocástico.</strong> Ya no me demoro más de 9 minutos. <strong><em><code>Un proceso estocástico va a ser una familia de variables aleatorias indexadas por un parámetro T, que puede ser un instante temporal o en el conjunto.</code></em></strong> Y aquí vamos a ver que es un subconjunto de los reales, o sea, que ese instante T vi en un conjunto T mayúscula o T caligráfica, que es un subconjunto de los reales.</p></li>
+<li><p><img src="images/clipboard-3991042648.png" class="img-fluid"></p></li>
+</ul>
+<p>en el cual pues bueno, en espacial ustedes tienen, bueno, ahorita algunas notas allí, pero por ahora vamos a poner en este curso que ese índice, ese indexador de las variables vive en <strong>los reales y todas las variables viven en el o están definidas en el mismo espacio de probabilidad</strong>.</p>
+<section id="proceso-en-tiempo-discreto-proceso-en-tiempo-continuo" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-en-tiempo-discreto-proceso-en-tiempo-continuo">Proceso en Tiempo Discreto / Proceso en Tiempo Continuo</h2>
+<ul>
+<li><p>Claro, si ese t es finito o numerable, por ejemplo, los naturales o los enteros, el proceso se llama proceso en tiempo discreto, si no se va a llamar proceso en tiempo continuo.</p></li>
+<li><p>Eh, si el soporte de cada variable, que lo hablamos muy al inicio de este vídeo, es decir, el conjunto de valores que toma la variable, ojo, no el conjunto de valores que toma el soporte, eso es una cosa. Ahorita vamos a hacer una tablita acá. Eh, por un lado tenemos el conjunto de posibles valores del soporte, valores del soporte T.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2389465578.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Y por el otro lado tenemos el conjunto de posibles valores de las variables, valores, que es lo que llamamos nosotros el soporte de las variables aleatorias, ¿no?</p>
+<p>Entonces, dependiendo de si ese claro si el proceso va a ser lo vamos a llamar en tiempo discreto, si el tclaro si el proceso va a ser lo vamos a llamar en tiempo discreto, si el <strong>t caligráfica es de los naturales o los enteros, si no lo vas a tomar en tiempo continuo, si el conjunto de valores que toma la variable es finito o es enumerable, vamos a llamar el proceso de estados discretos y si no continuo</strong>, ¿sí? O sea, dependiendo de los conjuntos de valores</p>
+<p>que tome, ¿cierto? <strong><em><code>La serie de tiempo va a verse como fijado un omega</code></em></strong>. el conjunto de realizaciones que van a tener todas las variables aleatorias.</p>
+</section>
+</section>
+<section id="una-serie-de-tiempo-es-una-realización-de-un-proceso-estocástico" class="level1">
+<h1>Una serie de Tiempo es una realización de un proceso estocástico</h1>
+<p><strong>Esa es lo que se llama una realización o trayectoria del proceso estocástico y es lo que va a dar origen más adelante a una serie de tiempo.</strong> O sea, una serie delo que va a dar origen más adelante a una serie de tiempo. O sea, una serie de tiempo es una realización de un proceso estocástico, ¿cierto?</p>
+<ul>
+<li><code>Si fijamos el t, o sea, el teto y miramos es todos los valores que toman eh esa variable para distintos valores del espacio muestral, ahí eso correspondería a la distribución de la variable en el tiempo t. Son dos cosas distintas. Si fijamos el ómega, tenemos una trayectoria del proceso. Si fijamos el tiempo y hacemos variar el óega, tendríamos la distribución o todos los valores que toma la varatoria. ¿Sí?</code></li>
+</ul>
+<p>Si al conjunto indexador no pertenece a R, sino a Rn, que es lo que pasa en estadística espacial, se suele llamar el proceso un campo aleatorio, pero tiene técnicas muy similares a lo que hacemos pues en este curso. O sea, aquí hay un ejemplo.</p>
+</section>
+<section id="ejemplo-2" class="level1">
+<h1>Ejemplo</h1>
+<p>Miren, pensemos que el omega es alguien que juega la naturaleza y se fija el omega y apenas se fija el omega, pues todas las variables tienen un valor fijo y esto es lo que llamaríamos una realización del proceso estocástico.</p>
+<p>Miren que dependiendo del valor de omega, pues pues se pueden dar realizaciones distintas, ¿cierto? Sería esto sería fijar el omega, ¿cierto? Que sería fijar omega y observar. Vamos por acá fijarmega y observar cuando t varía, cuando t varía, veríamos una serie de tiempo, ¿cierto?</p>
+<p><img src="images/clipboard-3430047082.png" class="img-fluid"></p>
+<p>En cambio, si fijamos t y variamos, estaríamos tratando de estudiar la distribución de una variable en un instante particular, que serían estas líneas verticales que cortan a la serie de tiempo. Importante visualizar esto y entender la idea de que la serie de tiempo es un ómega fijo, eh, y el t es el que varía, pero a veces uno podría pensar en hacer lo contrario, fijar el t si pudiese repetir el experimento, mirar varios omegas y con esos valores tratar de armar esa distribución.</p>
+<ul>
+<li><p>Nosotros no nos podemos dar ese lujo. Nosotros vamos a a tomar una serie de tiempo, es decir, una realización, una trayectoria del proceso y con ese tratar de aprender todo, distribuciones y eso y pues para eso no va a ser magia. Vamos a ver que pues hay toda una razón de ser.</p>
+<h1 id="clasificación-de-los-procesos-estocasticos">Clasificación de los Procesos estocasticos</h1></li>
+<li><p><strong>Los procesos estocásticos se clasifican dependiendo de los conjuntos de valores, los posibles valores de la variable, ¿cierto? O del soporte</strong>. Ya lo habíamos dicho, tiempo discreto, tiempo continuo o espacio de estados discreto o espacio de estados continuos.</p></li>
+<li><p>Nosotros en este curso nos vamos a meter con las variables estas que están acá, o sea, las series de tiempo van a vivir acá. Generalmente conjunto de estados de espacio de instantes de tiempo discretos, pero valores continuos, ¿cierto? Ahí van a vir las series de tiempo.</p>
+<p><img src="images/clipboard-1707901944.png" class="img-fluid"></p></li>
+<li><p>Aquí ustedes estudian, por ejemplo, las cadenas de <strong><em>Markov en tiempo discreto</em></strong> en el curso de procesos estocásticos. Aquí estudian las cadenas de Markov en tiempo continuo, perdón, en tiempo discreto era acá. Aquí están las de tiempo continuo. El proceso de poazón también se estudia acá, ¿cierto?</p></li>
+</ul>
+<p>Y cuando es continuo, continuo, eso también se puede hacer con series de tiempo en tiempo continuo, pero por acá vive, por ejemplo, el movimiento brauniano y bueno, otra serie de procesos, ¿vale? Pero nosotros vamos a quedar en ese cuadradito más que todo a lo largo de este curso, ¿cierto?</p>
+<p>La pregunta sería, bueno, ya entendimos que era un proceso stocástico, que es una colección de variables aleatorias, en realidad es no, o sea, podría ser no numerable y son muchísimas, o sea, no es un conjunto finito necesariamente. - —</p>
+<ul>
+<li>Entonces, uno sería la pregunta, venga, ¿y cómo puedo yo entender en un proceso estocástico la distribución de esas variables aleatorias? ¿Será que con decir la distribución de cada una de las variables es suficiente para hablar de que conozco al proceso estocástico o me tocará conocer algo más? Es decir, pensando en el en el análogo de una variable aleatoria, ¿cuáles son los identificadores únicos de un proceso estocástico? ¿Vale? En ese sentido, la tarea no es fácil. La tarea, no.</li>
+</ul>
+</section>
+<section id="identificadores-únicos-de-una-v.a" class="level1">
+<h1>Identificadores únicos de una V.A</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2206958289.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ul>
+<li>Acuérdense que los identificadores únicos de una variable aleatoria son:</li>
+</ul>
+<pre><code>1\) **Su función de distribución,**
+
+2)s**u función generadora de momento, si existe o**
+
+3\) **su función característica o si es discreta la función de masa de probabilidad,**
+
+4\) **pero la densidad**, por ejemplo, no es un identificador único, ¿cierto? pensando ya en un proceso estocástico, que es una colección que a veces no es finita de variables aleatorias, ¿cómo podríamos hablar de sus identificadores?
+
+Si fuera finita, pues simplemente extendemos todo a distribuciones multivariadas y ya. Pero como puede llegar a ser infinita, pues aparece esto último. Y ya con esto vamos a cerrar la clase de hoy.</code></pre>
+<ul>
+<li><p>Un proceso estocástico puede ser caracterizado, a pesar de que tenga infinitas variables o en principio sean no finitas, la cantidad de variables dentro de él, puede ser caracterizado a través de una cosa que se llama las distribuciones finitodimensionales.</p></li>
+<li><p>Es decir, si yo logro decir cuál, si me llegan a dar cualquier subconjunto finito de variables aleatorias de ese proceso estocástico y yo puedo decir cuál es la distribución de ese conjunto finito, habría caracterizado todas las distribuciones finitodimensionales y eso bastaría para entender completamente el proceso estocastico.</p></li>
+<li></li>
+<li><p>Yo les digo a ustedes en ese proceso la distribución conjunta de Y1, Y4 y Y1 usted me dice, “No, es una normal con tales parámetros, no sé qué, la de Y8, y15 y2.” Ah, eso es una distribución WARD.</p></li>
+<li></li>
+<li><p>Bueno, poniéndole un ejemplo, ¿cierto? Si logro hacer eso, que para cualquier variable, cualquier cantidad de variables, desde que sea finita y cualquier instante de tiempo, etcétera, ese variable, esas variables que que terminan siendo identificadas, yo conozco la distribución, es tendría todo.</p></li>
+<li><p>La pregunta es, ¿es una tarea fácil? La verdad, ¿no? O sea, en muy pocos procesos uno puede dar todo ese nivel de detalle. <strong>En las cadenas de Markov</strong>, <strong>ustedes sabrán que eso se limita o se puede reducir a la matriz de transición, a dar la matriz de transición si en la cadena Marcof es homogénea y de primer orden,</strong> ¿cierto? Eh, a dar la matriz de transición y la distribución inicial. En otros casos también se puede generalizar, pero en general es una tarea difícil. y se llaman <strong>finitodimensionales</strong>, pues porque nuestra mente no tenemos todavía un algoritmo para procesar <strong><em><code>distribuciones de de un conjunto infinito.</code></em></strong></p></li>
+<li><p>Entonces, nos reducimos a caracterizar cualquier subconjunto finito dentro de ello, ¿vale? Si bien no son identificadores únicos y ustedes pueden pensar por qué no lo son, también a veces es útil en un proceso, pues porque las destrucciones finitodimensionales es un complique.</p>
+<h1 id="función-de-medias">Función de medias</h1></li>
+<li><p>Hablar de lo que se llama la función de medias y es cómo yo puedo decir que cambia el valor medio si es si es que existe, ¿no? Porque o puede no existir el valor esperado de las variables en función de t. Entonces, ¿cuál es el valor esperado en t = 1, t = 2, t?</p>
+<h1 id="funcion-de-varianzas">Funcion de Varianzas</h1>
+<ul>
+<li>La función que me da las varianzas, obviamente en caso de existir, ¿cierto? Por eso digo, si es posible, porque no todos los procesos es posible calcular esto. Les deja la les dejo la tarea de de pensar por qué no son identificadores únicos<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, ¿cierto?</li>
+</ul></li>
+<li><p>Osea, no bastaría con conocerlos a ellos para decir que conozco a todo el proceso estocástico, pero está la función de varianza, está la función de covarianza, que para cada par de variables me dirían pues cómo cobarían o la función de correlación.</p></li>
+</ul>
+<!-- -->
+<ul>
+<li>La pregunta es, <strong>¿por qué solo estudian pares de instantes?</strong> Bueno, ustedes recordarán que eh la función de covariencia y la de correlación se estudian siempre por pares. ¿Sí? Eh, porque pues bueno, luego si ya tratara de estudiar <strong>la multivariada, pues tendría la matriz de variantes y coherencias que coincidaría todos los posibles pares y eso ya caracteriza los momentos de orden dos de un proceso.</strong></li>
+</ul>
+<p>¿Qué pasa si hay normalidad?<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>Les pongo a pensar ahí, les dejo esa tarea y piensen qué pasaría si habría normalidad en ese caso. Vale. Y listo, muchachos. Eso sería lo que tendríamos para el video de hoy. Pónganse muy juiciosos a verlo, por favor. el video otro, espero que sea más cortico.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Atajos prácticos basados en la experiencia para resolver problemas de forma rápida, sin garantizar una solución óptima.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Una <strong>media estática</strong> (o promedio fijo) es el cálculo del promedio de un conjunto de datos donde <strong>todos los datos históricos valen exactamente lo mismo</strong>, sin importar si son antiguos o recientes, y <strong>no se actualiza conforme cambia la tendencia del tiempo</strong>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Libro a Investigar<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>El modelo estadístico <strong>ETS</strong> (<em>Exponential Smoothing State Space Model</em>) fue desarrollado en 2002 por los investigadores Rob J. Hyndman, Anne B. Koehler, J. Keith Ord y Ralph D. Snyde<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Tarea por que no son identificadores unicos?<br>
+RTA: No son unicos por que representan el orden cronologico o la posicion en la secuencia, no la identidad de un dato fijo.<br>
+En estadistica y proceos estocastico, una serie de tiempo es una sucesion de v.a ordenadas en el tiempo.<br>
+El subindice t, funciona como una etiquera temporal, pero no hace que la variable sea unica en el sentido de un registro de base de datos.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Cuando un <strong>proceso estocastico</strong> tiene distribucion normal o gaussiana ocurre una propiedad matematica fundamental, l<strong>a estructura de covarianza de segundo orden va a caracterizar a todo el proceso.</strong></p>
+<p>Si hay normalidad, <strong>no se pierde ninguna información al estudiar solo pares de instantes</strong>. La matriz de covarianzas (construida solo con pares) junto con la media definen al <span class="math inline">\(100\%\)</span> la distribución conjunta multivariada de cualquier número de instantes del proceso. Además, la estacionariedad débil se convierte en estricta y la falta de correlación implica independencia total.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
