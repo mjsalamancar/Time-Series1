@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Taller 2</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-dc395e18c8bee22eb204ab71e76a7c48.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/plotly-binding-4.12.1/plotly.js"></script>
+
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+
+<style>
+  /* Color Azul para todo el texto principal */
+  body {
+    color: #1e3a8a !important; /* Azul oscuro elegante y legible */
+  }
+  
+  /* Color Rojo para todos los títulos (h1, h2, h3, h4, h5, h6) */
+  h1, h2, h3, h4, h5, h6, .title {
+    color: #dc2626 !important; /* Rojo vibrante */
+  }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./taller1.qmd">Talleres</a></li><li class="breadcrumb-item"><a href="./taller2.html">Taller 2</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true"><i class="bi bi-journal-bookmark-fill" role="img">
+</i> 
+ <span class="menu-text">Clases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semana 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lunes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pre4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pre-Clase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clase4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clase - Profe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pos4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pos-Clase</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Miércoles</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clase5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clase</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true"><i class="bi bi-tools" role="img">
+</i> 
+ <span class="menu-text">Talleres</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taller1.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Taller 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taller2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Taller 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./taller1.qmd">Talleres</a></li><li class="breadcrumb-item"><a href="./taller2.html">Taller 2</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Taller 2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="a.-metodología-general-de-pronósticos-y-modelos-de-suavizamiento-exponencial-ets" class="level1">
+<h1>A. Metodología general de pronósticos y modelos de suavizamiento exponencial (ETS)</h1>
+<ol type="1">
+<li><p>Para cada una de las siguientes siguaciones, identifique:</p>
+<ol type="a">
+<li><p>La variable de interés a modelar</p></li>
+<li><p>La periodicidad de la serie (y características o componentes adicionales que se identifiquen en el contexto)</p></li>
+<li><p>El horizonte de predicción de interés para un modelo de pronósticos</p></li>
+<li><p>los pasos adelante en los cuales en realidad interesa pronosticar,</p></li>
+<li><p>la estrategia de ventana,</p></li>
+<li><p>la estrategia de calibración,</p></li>
+<li><p>el resultado de interés (pronósticos puntuales, por intervalo o densidades), y</p></li>
+<li><p>las métricas de evaluación de acuerdo con el contexto,</p></li>
+<li><p>un posible modelo base (benchmark) con base en el cual se quisiera contrastar el desempeño del modelo que se va a proponer.</p></li>
+</ol></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Situación 1: Ruta Bogotá - Popayán
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Una aerolínea analiza la cantidad de pasajeros diarios en la ruta Bogotá-Popayán durante los últimos 4 años.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-fc2d19442c921a044d8c" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-fc2d19442c921a044d8c">{"x":{"visdat":{"3e1c5f323856":["function () ","plotlyVisDat"],"3e1c269bf6c":["function () ","data"]},"cur_data":"3e1c269bf6c","attrs":{"3e1c5f323856":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scattergeo","mode":"markers+text","lon":[-74.146900000000002,-76.609399999999994],"lat":[4.7016,2.4544000000000001],"text":["Bogotá (BOG)","Popayán (PPN)"],"textposition":"top right","marker":{"size":10,"color":"#831843"},"name":"Aeropuertos","inherit":true,"x":[4.7016,2.4544000000000001],"y":[-74.146900000000002,-76.609399999999994]},"3e1c5f323856.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scattergeo","mode":"lines","lon":[-74.146900000000002,-74.178070886075957,-74.209241772151898,-74.240412658227854,-74.271583544303795,-74.30275443037975,-74.333925316455691,-74.365096202531646,-74.396267088607601,-74.427437974683542,-74.458608860759497,-74.489779746835438,-74.520950632911394,-74.552121518987349,-74.58329240506329,-74.614463291139245,-74.645634177215186,-74.676805063291141,-74.707975949367082,-74.739146835443037,-74.770317721518992,-74.801488607594933,-74.832659493670889,-74.86383037974683,-74.895001265822785,-74.92617215189874,-74.957343037974681,-74.988513924050636,-75.019684810126577,-75.050855696202532,-75.082026582278473,-75.113197468354429,-75.144368354430384,-75.175539240506325,-75.20671012658228,-75.237881012658221,-75.269051898734176,-75.300222784810131,-75.331393670886072,-75.362564556962027,-75.393735443037968,-75.424906329113924,-75.456077215189865,-75.48724810126582,-75.518418987341775,-75.549589873417716,-75.580760759493671,-75.611931645569612,-75.643102531645567,-75.674273417721523,-75.705444303797464,-75.736615189873419,-75.76778607594936,-75.798956962025315,-75.830127848101256,-75.861298734177211,-75.892469620253166,-75.923640506329107,-75.954811392405063,-75.985982278481004,-76.017153164556959,-76.048324050632914,-76.079494936708855,-76.11066582278481,-76.141836708860751,-76.173007594936706,-76.204178481012647,-76.235349367088602,-76.266520253164558,-76.297691139240499,-76.328862025316454,-76.360032911392395,-76.39120379746835,-76.422374683544291,-76.453545569620246,-76.484716455696201,-76.515887341772142,-76.547058227848098,-76.578229113924039,-76.609399999999994],"lat":[4.7016,4.6731544303797472,4.6447088607594935,4.6162632911392407,4.587817721518987,4.5593721518987342,4.5309265822784814,4.5024810126582278,4.474035443037975,4.4455898734177213,4.4171443037974685,4.3886987341772148,4.360253164556962,4.3318075949367092,4.3033620253164555,4.2749164556962027,4.246470886075949,4.2180253164556962,4.1895797468354434,4.1611341772151897,4.1326886075949369,4.1042430379746833,4.0757974683544305,4.0473518987341777,4.018906329113924,3.9904607594936712,3.9620151898734179,3.9335696202531647,3.9051240506329115,3.8766784810126582,3.8482329113924054,3.8197873417721517,3.7913417721518989,3.7628962025316457,3.7344506329113925,3.7060050632911392,3.677559493670886,3.6491139240506332,3.6206683544303799,3.5922227848101267,3.5637772151898734,3.5353316455696202,3.5068860759493674,3.4784405063291137,3.4499949367088609,3.4215493670886077,3.3931037974683544,3.3646582278481016,3.336212658227848,3.3077670886075952,3.2793215189873419,3.2508759493670887,3.2224303797468359,3.1939848101265822,3.1655392405063294,3.1370936708860762,3.1086481012658229,3.0802025316455697,3.0517569620253164,3.0233113924050636,2.9948658227848104,2.9664202531645572,2.9379746835443039,2.9095291139240507,2.8810835443037979,2.8526379746835442,2.8241924050632914,2.7957468354430381,2.7673012658227849,2.7388556962025321,2.7104101265822784,2.6819645569620256,2.6535189873417724,2.6250734177215191,2.5966278481012659,2.5681822784810127,2.5397367088607599,2.5112911392405066,2.4828455696202534,2.4544000000000001],"line":{"width":3,"color":"#ec4899"},"name":"Ruta","inherit":true,"x":[4.7016,4.6731544303797472,4.6447088607594935,4.6162632911392407,4.587817721518987,4.5593721518987342,4.5309265822784814,4.5024810126582278,4.474035443037975,4.4455898734177213,4.4171443037974685,4.3886987341772148,4.360253164556962,4.3318075949367092,4.3033620253164555,4.2749164556962027,4.246470886075949,4.2180253164556962,4.1895797468354434,4.1611341772151897,4.1326886075949369,4.1042430379746833,4.0757974683544305,4.0473518987341777,4.018906329113924,3.9904607594936712,3.9620151898734179,3.9335696202531647,3.9051240506329115,3.8766784810126582,3.8482329113924054,3.8197873417721517,3.7913417721518989,3.7628962025316457,3.7344506329113925,3.7060050632911392,3.677559493670886,3.6491139240506332,3.6206683544303799,3.5922227848101267,3.5637772151898734,3.5353316455696202,3.5068860759493674,3.4784405063291137,3.4499949367088609,3.4215493670886077,3.3931037974683544,3.3646582278481016,3.336212658227848,3.3077670886075952,3.2793215189873419,3.2508759493670887,3.2224303797468359,3.1939848101265822,3.1655392405063294,3.1370936708860762,3.1086481012658229,3.0802025316455697,3.0517569620253164,3.0233113924050636,2.9948658227848104,2.9664202531645572,2.9379746835443039,2.9095291139240507,2.8810835443037979,2.8526379746835442,2.8241924050632914,2.7957468354430381,2.7673012658227849,2.7388556962025321,2.7104101265822784,2.6819645569620256,2.6535189873417724,2.6250734177215191,2.5966278481012659,2.5681822784810127,2.5397367088607599,2.5112911392405066,2.4828455696202534,2.4544000000000001],"y":[-74.146900000000002,-74.178070886075957,-74.209241772151898,-74.240412658227854,-74.271583544303795,-74.30275443037975,-74.333925316455691,-74.365096202531646,-74.396267088607601,-74.427437974683542,-74.458608860759497,-74.489779746835438,-74.520950632911394,-74.552121518987349,-74.58329240506329,-74.614463291139245,-74.645634177215186,-74.676805063291141,-74.707975949367082,-74.739146835443037,-74.770317721518992,-74.801488607594933,-74.832659493670889,-74.86383037974683,-74.895001265822785,-74.92617215189874,-74.957343037974681,-74.988513924050636,-75.019684810126577,-75.050855696202532,-75.082026582278473,-75.113197468354429,-75.144368354430384,-75.175539240506325,-75.20671012658228,-75.237881012658221,-75.269051898734176,-75.300222784810131,-75.331393670886072,-75.362564556962027,-75.393735443037968,-75.424906329113924,-75.456077215189865,-75.48724810126582,-75.518418987341775,-75.549589873417716,-75.580760759493671,-75.611931645569612,-75.643102531645567,-75.674273417721523,-75.705444303797464,-75.736615189873419,-75.76778607594936,-75.798956962025315,-75.830127848101256,-75.861298734177211,-75.892469620253166,-75.923640506329107,-75.954811392405063,-75.985982278481004,-76.017153164556959,-76.048324050632914,-76.079494936708855,-76.11066582278481,-76.141836708860751,-76.173007594936706,-76.204178481012647,-76.235349367088602,-76.266520253164558,-76.297691139240499,-76.328862025316454,-76.360032911392395,-76.39120379746835,-76.422374683544291,-76.453545569620246,-76.484716455696201,-76.515887341772142,-76.547058227848098,-76.578229113924039,-76.609399999999994]},"3e1c269bf6c":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scattergeo","mode":"markers","lon":{},"lat":{},"frame":{},"marker":{"size":14,"color":"#831843","symbol":"airport"},"name":"Avión","showlegend":false,"inherit":true,"x":{},"y":{}}},"layout":{"margin":{"b":0,"l":0,"t":10,"r":0},"mapType":"geo","geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"south america","showland":true,"landcolor":"#fce7f3","showcountries":true,"countrycolor":"#db2777","center":{"lon":-75.299999999999997,"lat":3.6000000000000001},"projection":{"scale":12}},"hovermode":"closest","showlegend":true,"sliders":[{"currentvalue":{"prefix":"frame: ","xanchor":"right","font":{"size":16,"color":"rgba(204,204,204,1)"}},"steps":[{"method":"animate","args":[["1"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"1","value":"1"},{"method":"animate","args":[["2"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"2","value":"2"},{"method":"animate","args":[["3"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"3","value":"3"},{"method":"animate","args":[["4"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"4","value":"4"},{"method":"animate","args":[["5"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"5","value":"5"},{"method":"animate","args":[["6"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"6","value":"6"},{"method":"animate","args":[["7"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"7","value":"7"},{"method":"animate","args":[["8"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"8","value":"8"},{"method":"animate","args":[["9"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"9","value":"9"},{"method":"animate","args":[["10"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"10","value":"10"},{"method":"animate","args":[["11"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"11","value":"11"},{"method":"animate","args":[["12"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"12","value":"12"},{"method":"animate","args":[["13"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"13","value":"13"},{"method":"animate","args":[["14"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"14","value":"14"},{"method":"animate","args":[["15"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"15","value":"15"},{"method":"animate","args":[["16"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"16","value":"16"},{"method":"animate","args":[["17"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"17","value":"17"},{"method":"animate","args":[["18"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"18","value":"18"},{"method":"animate","args":[["19"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"19","value":"19"},{"method":"animate","args":[["20"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"20","value":"20"},{"method":"animate","args":[["21"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"21","value":"21"},{"method":"animate","args":[["22"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"22","value":"22"},{"method":"animate","args":[["23"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"23","value":"23"},{"method":"animate","args":[["24"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"24","value":"24"},{"method":"animate","args":[["25"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"25","value":"25"},{"method":"animate","args":[["26"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"26","value":"26"},{"method":"animate","args":[["27"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"27","value":"27"},{"method":"animate","args":[["28"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"28","value":"28"},{"method":"animate","args":[["29"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"29","value":"29"},{"method":"animate","args":[["30"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"30","value":"30"},{"method":"animate","args":[["31"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"31","value":"31"},{"method":"animate","args":[["32"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"32","value":"32"},{"method":"animate","args":[["33"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"33","value":"33"},{"method":"animate","args":[["34"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"34","value":"34"},{"method":"animate","args":[["35"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"35","value":"35"},{"method":"animate","args":[["36"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"36","value":"36"},{"method":"animate","args":[["37"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"37","value":"37"},{"method":"animate","args":[["38"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"38","value":"38"},{"method":"animate","args":[["39"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"39","value":"39"},{"method":"animate","args":[["40"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"40","value":"40"},{"method":"animate","args":[["41"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"41","value":"41"},{"method":"animate","args":[["42"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"42","value":"42"},{"method":"animate","args":[["43"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"43","value":"43"},{"method":"animate","args":[["44"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"44","value":"44"},{"method":"animate","args":[["45"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"45","value":"45"},{"method":"animate","args":[["46"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"46","value":"46"},{"method":"animate","args":[["47"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"47","value":"47"},{"method":"animate","args":[["48"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"48","value":"48"},{"method":"animate","args":[["49"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"49","value":"49"},{"method":"animate","args":[["50"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"50","value":"50"},{"method":"animate","args":[["51"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"51","value":"51"},{"method":"animate","args":[["52"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"52","value":"52"},{"method":"animate","args":[["53"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"53","value":"53"},{"method":"animate","args":[["54"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"54","value":"54"},{"method":"animate","args":[["55"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"55","value":"55"},{"method":"animate","args":[["56"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"56","value":"56"},{"method":"animate","args":[["57"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"57","value":"57"},{"method":"animate","args":[["58"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"58","value":"58"},{"method":"animate","args":[["59"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"59","value":"59"},{"method":"animate","args":[["60"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"60","value":"60"},{"method":"animate","args":[["61"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"61","value":"61"},{"method":"animate","args":[["62"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"62","value":"62"},{"method":"animate","args":[["63"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"63","value":"63"},{"method":"animate","args":[["64"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"64","value":"64"},{"method":"animate","args":[["65"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"65","value":"65"},{"method":"animate","args":[["66"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"66","value":"66"},{"method":"animate","args":[["67"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"67","value":"67"},{"method":"animate","args":[["68"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"68","value":"68"},{"method":"animate","args":[["69"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"69","value":"69"},{"method":"animate","args":[["70"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"70","value":"70"},{"method":"animate","args":[["71"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"71","value":"71"},{"method":"animate","args":[["72"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"72","value":"72"},{"method":"animate","args":[["73"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"73","value":"73"},{"method":"animate","args":[["74"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"74","value":"74"},{"method":"animate","args":[["75"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"75","value":"75"},{"method":"animate","args":[["76"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"76","value":"76"},{"method":"animate","args":[["77"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"77","value":"77"},{"method":"animate","args":[["78"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"78","value":"78"},{"method":"animate","args":[["79"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"79","value":"79"},{"method":"animate","args":[["80"],{"transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true},"mode":"immediate"}],"label":"80","value":"80"}],"visible":true,"pad":{"t":40}}],"updatemenus":[{"type":"buttons","direction":"right","showactive":false,"y":0,"x":0,"yanchor":"top","xanchor":"right","pad":{"t":60,"r":5},"buttons":[{"label":"Play","method":"animate","args":[null,{"fromcurrent":true,"mode":"immediate","transition":{"duration":0,"easing":"linear"},"frame":{"duration":50,"redraw":true}}]}]}]},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"type":"scattergeo","mode":"markers+text","lon":[-74.146900000000002,-76.609399999999994],"lat":[4.7016,2.4544000000000001],"text":["Bogotá (BOG)","Popayán (PPN)"],"textposition":["top right","top right"],"marker":{"color":"#831843","size":10,"line":{"color":"rgba(31,119,180,1)"}},"name":"Aeropuertos","line":{"color":"rgba(31,119,180,1)"},"geo":"geo","frame":null},{"type":"scattergeo","mode":"lines","lon":[-74.146900000000002,-74.178070886075957,-74.209241772151898,-74.240412658227854,-74.271583544303795,-74.30275443037975,-74.333925316455691,-74.365096202531646,-74.396267088607601,-74.427437974683542,-74.458608860759497,-74.489779746835438,-74.520950632911394,-74.552121518987349,-74.58329240506329,-74.614463291139245,-74.645634177215186,-74.676805063291141,-74.707975949367082,-74.739146835443037,-74.770317721518992,-74.801488607594933,-74.832659493670889,-74.86383037974683,-74.895001265822785,-74.92617215189874,-74.957343037974681,-74.988513924050636,-75.019684810126577,-75.050855696202532,-75.082026582278473,-75.113197468354429,-75.144368354430384,-75.175539240506325,-75.20671012658228,-75.237881012658221,-75.269051898734176,-75.300222784810131,-75.331393670886072,-75.362564556962027,-75.393735443037968,-75.424906329113924,-75.456077215189865,-75.48724810126582,-75.518418987341775,-75.549589873417716,-75.580760759493671,-75.611931645569612,-75.643102531645567,-75.674273417721523,-75.705444303797464,-75.736615189873419,-75.76778607594936,-75.798956962025315,-75.830127848101256,-75.861298734177211,-75.892469620253166,-75.923640506329107,-75.954811392405063,-75.985982278481004,-76.017153164556959,-76.048324050632914,-76.079494936708855,-76.11066582278481,-76.141836708860751,-76.173007594936706,-76.204178481012647,-76.235349367088602,-76.266520253164558,-76.297691139240499,-76.328862025316454,-76.360032911392395,-76.39120379746835,-76.422374683544291,-76.453545569620246,-76.484716455696201,-76.515887341772142,-76.547058227848098,-76.578229113924039,-76.609399999999994],"lat":[4.7016,4.6731544303797472,4.6447088607594935,4.6162632911392407,4.587817721518987,4.5593721518987342,4.5309265822784814,4.5024810126582278,4.474035443037975,4.4455898734177213,4.4171443037974685,4.3886987341772148,4.360253164556962,4.3318075949367092,4.3033620253164555,4.2749164556962027,4.246470886075949,4.2180253164556962,4.1895797468354434,4.1611341772151897,4.1326886075949369,4.1042430379746833,4.0757974683544305,4.0473518987341777,4.018906329113924,3.9904607594936712,3.9620151898734179,3.9335696202531647,3.9051240506329115,3.8766784810126582,3.8482329113924054,3.8197873417721517,3.7913417721518989,3.7628962025316457,3.7344506329113925,3.7060050632911392,3.677559493670886,3.6491139240506332,3.6206683544303799,3.5922227848101267,3.5637772151898734,3.5353316455696202,3.5068860759493674,3.4784405063291137,3.4499949367088609,3.4215493670886077,3.3931037974683544,3.3646582278481016,3.336212658227848,3.3077670886075952,3.2793215189873419,3.2508759493670887,3.2224303797468359,3.1939848101265822,3.1655392405063294,3.1370936708860762,3.1086481012658229,3.0802025316455697,3.0517569620253164,3.0233113924050636,2.9948658227848104,2.9664202531645572,2.9379746835443039,2.9095291139240507,2.8810835443037979,2.8526379746835442,2.8241924050632914,2.7957468354430381,2.7673012658227849,2.7388556962025321,2.7104101265822784,2.6819645569620256,2.6535189873417724,2.6250734177215191,2.5966278481012659,2.5681822784810127,2.5397367088607599,2.5112911392405066,2.4828455696202534,2.4544000000000001],"line":{"color":"#ec4899","width":3},"name":"Ruta","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"geo":"geo","frame":null},{"type":"scattergeo","mode":"markers","lon":[-74.146900000000002],"lat":[4.7016],"frame":"1","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"frames":[{"name":"1","data":[{"type":"scattergeo","mode":"markers","lon":[-74.146900000000002],"lat":[4.7016],"frame":"1","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"2","data":[{"type":"scattergeo","mode":"markers","lon":[-74.178070886075957],"lat":[4.6731544303797472],"frame":"2","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"3","data":[{"type":"scattergeo","mode":"markers","lon":[-74.209241772151898],"lat":[4.6447088607594935],"frame":"3","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"4","data":[{"type":"scattergeo","mode":"markers","lon":[-74.240412658227854],"lat":[4.6162632911392407],"frame":"4","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"5","data":[{"type":"scattergeo","mode":"markers","lon":[-74.271583544303795],"lat":[4.587817721518987],"frame":"5","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"6","data":[{"type":"scattergeo","mode":"markers","lon":[-74.30275443037975],"lat":[4.5593721518987342],"frame":"6","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"7","data":[{"type":"scattergeo","mode":"markers","lon":[-74.333925316455691],"lat":[4.5309265822784814],"frame":"7","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"8","data":[{"type":"scattergeo","mode":"markers","lon":[-74.365096202531646],"lat":[4.5024810126582278],"frame":"8","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"9","data":[{"type":"scattergeo","mode":"markers","lon":[-74.396267088607601],"lat":[4.474035443037975],"frame":"9","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"10","data":[{"type":"scattergeo","mode":"markers","lon":[-74.427437974683542],"lat":[4.4455898734177213],"frame":"10","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"11","data":[{"type":"scattergeo","mode":"markers","lon":[-74.458608860759497],"lat":[4.4171443037974685],"frame":"11","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"12","data":[{"type":"scattergeo","mode":"markers","lon":[-74.489779746835438],"lat":[4.3886987341772148],"frame":"12","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"13","data":[{"type":"scattergeo","mode":"markers","lon":[-74.520950632911394],"lat":[4.360253164556962],"frame":"13","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"14","data":[{"type":"scattergeo","mode":"markers","lon":[-74.552121518987349],"lat":[4.3318075949367092],"frame":"14","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"15","data":[{"type":"scattergeo","mode":"markers","lon":[-74.58329240506329],"lat":[4.3033620253164555],"frame":"15","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"16","data":[{"type":"scattergeo","mode":"markers","lon":[-74.614463291139245],"lat":[4.2749164556962027],"frame":"16","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"17","data":[{"type":"scattergeo","mode":"markers","lon":[-74.645634177215186],"lat":[4.246470886075949],"frame":"17","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"18","data":[{"type":"scattergeo","mode":"markers","lon":[-74.676805063291141],"lat":[4.2180253164556962],"frame":"18","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"19","data":[{"type":"scattergeo","mode":"markers","lon":[-74.707975949367082],"lat":[4.1895797468354434],"frame":"19","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"20","data":[{"type":"scattergeo","mode":"markers","lon":[-74.739146835443037],"lat":[4.1611341772151897],"frame":"20","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"21","data":[{"type":"scattergeo","mode":"markers","lon":[-74.770317721518992],"lat":[4.1326886075949369],"frame":"21","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"22","data":[{"type":"scattergeo","mode":"markers","lon":[-74.801488607594933],"lat":[4.1042430379746833],"frame":"22","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"23","data":[{"type":"scattergeo","mode":"markers","lon":[-74.832659493670889],"lat":[4.0757974683544305],"frame":"23","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"24","data":[{"type":"scattergeo","mode":"markers","lon":[-74.86383037974683],"lat":[4.0473518987341777],"frame":"24","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"25","data":[{"type":"scattergeo","mode":"markers","lon":[-74.895001265822785],"lat":[4.018906329113924],"frame":"25","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"26","data":[{"type":"scattergeo","mode":"markers","lon":[-74.92617215189874],"lat":[3.9904607594936712],"frame":"26","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"27","data":[{"type":"scattergeo","mode":"markers","lon":[-74.957343037974681],"lat":[3.9620151898734179],"frame":"27","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"28","data":[{"type":"scattergeo","mode":"markers","lon":[-74.988513924050636],"lat":[3.9335696202531647],"frame":"28","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"29","data":[{"type":"scattergeo","mode":"markers","lon":[-75.019684810126577],"lat":[3.9051240506329115],"frame":"29","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"30","data":[{"type":"scattergeo","mode":"markers","lon":[-75.050855696202532],"lat":[3.8766784810126582],"frame":"30","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"31","data":[{"type":"scattergeo","mode":"markers","lon":[-75.082026582278473],"lat":[3.8482329113924054],"frame":"31","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"32","data":[{"type":"scattergeo","mode":"markers","lon":[-75.113197468354429],"lat":[3.8197873417721517],"frame":"32","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"33","data":[{"type":"scattergeo","mode":"markers","lon":[-75.144368354430384],"lat":[3.7913417721518989],"frame":"33","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"34","data":[{"type":"scattergeo","mode":"markers","lon":[-75.175539240506325],"lat":[3.7628962025316457],"frame":"34","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"35","data":[{"type":"scattergeo","mode":"markers","lon":[-75.20671012658228],"lat":[3.7344506329113925],"frame":"35","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"36","data":[{"type":"scattergeo","mode":"markers","lon":[-75.237881012658221],"lat":[3.7060050632911392],"frame":"36","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"37","data":[{"type":"scattergeo","mode":"markers","lon":[-75.269051898734176],"lat":[3.677559493670886],"frame":"37","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"38","data":[{"type":"scattergeo","mode":"markers","lon":[-75.300222784810131],"lat":[3.6491139240506332],"frame":"38","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"39","data":[{"type":"scattergeo","mode":"markers","lon":[-75.331393670886072],"lat":[3.6206683544303799],"frame":"39","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"40","data":[{"type":"scattergeo","mode":"markers","lon":[-75.362564556962027],"lat":[3.5922227848101267],"frame":"40","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"41","data":[{"type":"scattergeo","mode":"markers","lon":[-75.393735443037968],"lat":[3.5637772151898734],"frame":"41","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"42","data":[{"type":"scattergeo","mode":"markers","lon":[-75.424906329113924],"lat":[3.5353316455696202],"frame":"42","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"43","data":[{"type":"scattergeo","mode":"markers","lon":[-75.456077215189865],"lat":[3.5068860759493674],"frame":"43","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"44","data":[{"type":"scattergeo","mode":"markers","lon":[-75.48724810126582],"lat":[3.4784405063291137],"frame":"44","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"45","data":[{"type":"scattergeo","mode":"markers","lon":[-75.518418987341775],"lat":[3.4499949367088609],"frame":"45","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"46","data":[{"type":"scattergeo","mode":"markers","lon":[-75.549589873417716],"lat":[3.4215493670886077],"frame":"46","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"47","data":[{"type":"scattergeo","mode":"markers","lon":[-75.580760759493671],"lat":[3.3931037974683544],"frame":"47","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"48","data":[{"type":"scattergeo","mode":"markers","lon":[-75.611931645569612],"lat":[3.3646582278481016],"frame":"48","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"49","data":[{"type":"scattergeo","mode":"markers","lon":[-75.643102531645567],"lat":[3.336212658227848],"frame":"49","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"50","data":[{"type":"scattergeo","mode":"markers","lon":[-75.674273417721523],"lat":[3.3077670886075952],"frame":"50","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"51","data":[{"type":"scattergeo","mode":"markers","lon":[-75.705444303797464],"lat":[3.2793215189873419],"frame":"51","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"52","data":[{"type":"scattergeo","mode":"markers","lon":[-75.736615189873419],"lat":[3.2508759493670887],"frame":"52","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"53","data":[{"type":"scattergeo","mode":"markers","lon":[-75.76778607594936],"lat":[3.2224303797468359],"frame":"53","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"54","data":[{"type":"scattergeo","mode":"markers","lon":[-75.798956962025315],"lat":[3.1939848101265822],"frame":"54","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"55","data":[{"type":"scattergeo","mode":"markers","lon":[-75.830127848101256],"lat":[3.1655392405063294],"frame":"55","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"56","data":[{"type":"scattergeo","mode":"markers","lon":[-75.861298734177211],"lat":[3.1370936708860762],"frame":"56","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"57","data":[{"type":"scattergeo","mode":"markers","lon":[-75.892469620253166],"lat":[3.1086481012658229],"frame":"57","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"58","data":[{"type":"scattergeo","mode":"markers","lon":[-75.923640506329107],"lat":[3.0802025316455697],"frame":"58","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"59","data":[{"type":"scattergeo","mode":"markers","lon":[-75.954811392405063],"lat":[3.0517569620253164],"frame":"59","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"60","data":[{"type":"scattergeo","mode":"markers","lon":[-75.985982278481004],"lat":[3.0233113924050636],"frame":"60","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"61","data":[{"type":"scattergeo","mode":"markers","lon":[-76.017153164556959],"lat":[2.9948658227848104],"frame":"61","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"62","data":[{"type":"scattergeo","mode":"markers","lon":[-76.048324050632914],"lat":[2.9664202531645572],"frame":"62","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"63","data":[{"type":"scattergeo","mode":"markers","lon":[-76.079494936708855],"lat":[2.9379746835443039],"frame":"63","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"64","data":[{"type":"scattergeo","mode":"markers","lon":[-76.11066582278481],"lat":[2.9095291139240507],"frame":"64","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"65","data":[{"type":"scattergeo","mode":"markers","lon":[-76.141836708860751],"lat":[2.8810835443037979],"frame":"65","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"66","data":[{"type":"scattergeo","mode":"markers","lon":[-76.173007594936706],"lat":[2.8526379746835442],"frame":"66","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"67","data":[{"type":"scattergeo","mode":"markers","lon":[-76.204178481012647],"lat":[2.8241924050632914],"frame":"67","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"68","data":[{"type":"scattergeo","mode":"markers","lon":[-76.235349367088602],"lat":[2.7957468354430381],"frame":"68","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"69","data":[{"type":"scattergeo","mode":"markers","lon":[-76.266520253164558],"lat":[2.7673012658227849],"frame":"69","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"70","data":[{"type":"scattergeo","mode":"markers","lon":[-76.297691139240499],"lat":[2.7388556962025321],"frame":"70","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"71","data":[{"type":"scattergeo","mode":"markers","lon":[-76.328862025316454],"lat":[2.7104101265822784],"frame":"71","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"72","data":[{"type":"scattergeo","mode":"markers","lon":[-76.360032911392395],"lat":[2.6819645569620256],"frame":"72","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"73","data":[{"type":"scattergeo","mode":"markers","lon":[-76.39120379746835],"lat":[2.6535189873417724],"frame":"73","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"74","data":[{"type":"scattergeo","mode":"markers","lon":[-76.422374683544291],"lat":[2.6250734177215191],"frame":"74","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"75","data":[{"type":"scattergeo","mode":"markers","lon":[-76.453545569620246],"lat":[2.5966278481012659],"frame":"75","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"76","data":[{"type":"scattergeo","mode":"markers","lon":[-76.484716455696201],"lat":[2.5681822784810127],"frame":"76","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"77","data":[{"type":"scattergeo","mode":"markers","lon":[-76.515887341772142],"lat":[2.5397367088607599],"frame":"77","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"78","data":[{"type":"scattergeo","mode":"markers","lon":[-76.547058227848098],"lat":[2.5112911392405066],"frame":"78","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"79","data":[{"type":"scattergeo","mode":"markers","lon":[-76.578229113924039],"lat":[2.4828455696202534],"frame":"79","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]},{"name":"80","data":[{"type":"scattergeo","mode":"markers","lon":[-76.609399999999994],"lat":[2.4544000000000001],"frame":"80","marker":{"color":"#831843","size":14,"symbol":"airport","line":{"color":"rgba(44,160,44,1)"}},"showlegend":false,"line":{"color":"rgba(44,160,44,1)"},"geo":"geo","visible":true}],"traces":[2]}],"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Las ventas muestran patrones semanales claros (viajes de negocios entre semana, ocio fines de semana) y picos en temporadas vacacionales y festivos.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>▶ Componentes de la Metodología de Pronósticos
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Componente</th>
+<th style="text-align: left;">Descripción en el Contexto (Bogotá - Popayán)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>(a) Variable de interés a modelar</strong></td>
+<td style="text-align: left;">Cantidad diaria de pasajeros en la ruta Bogotá - Popayán.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(b) Periodicidad y componentes</strong></td>
+<td style="text-align: left;"><strong>Diaria.</strong> Presenta estacionalidad semanal (picos los L, V, D), estacionalidad anual (temporadas vacacionales/festivos) y tendencia de crecimiento.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>(c) Horizonte de predicción</strong></td>
+<td style="text-align: left;">Corto / Mediano plazo (ej. los próximos 30 a 90 días para planeación operativa).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(d) Pasos adelante de interés</strong></td>
+<td style="text-align: left;"><span class="math inline">\(h = 1, 2, \dots, 30\)</span> días adelante.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>(e) Estrategia de ventana</strong></td>
+<td style="text-align: left;">Ventana expansiva o ventana móvil (ej. últimos 2 ó 3 años de datos).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(f) Estrategia de calibración</strong></td>
+<td style="text-align: left;">Reentrenamiento periódico (semanal o mensual) a medida que ingresan datos nuevos.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>(g) Resultado de interés</strong></td>
+<td style="text-align: left;">Pronósticos puntuales y por intervalos de confianza (para evaluar escenarios de alta/baja demanda).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(h) Métricas de evaluación</strong></td>
+<td style="text-align: left;">RMSE, MAE o MAPE (evaluados en la muestra de validación/prueba).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>(i) Modelo base (<em>benchmark</em>)</strong></td>
+<td style="text-align: left;">Modelo Naïve estacional (mismo día de la semana anterior o misma fecha del año anterior).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Situación 2: Banco de la República
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>El banco de la República analiza la <strong>inflación mensual</strong> de los últimos 20 años.</p></li>
+<li><p>El ve variables tipo:</p>
+<ul>
+<li><div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tipo de Cambio</td>
+</tr>
+<tr class="even">
+<td>Precios Internacionales</td>
+</tr>
+<tr class="odd">
+<td>Tasas de Interés</td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+</tbody>
+</table>
+</div></li>
+</ul></li>
+<li><p>La inflacion presenta:</p>
+<ul>
+<li><table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Persistencia Temporal (Lo que ocurre en un mes afecta el siguiente)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cambios Estructurales (Crisis economicas o reformas)</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+<li><p>Las decisiones de politica monetaria se toman en reuniones mensuales, pero sus efectos se materializan con rezagos.</p></li>
+<li><p>Por ello, el banco está interesado en pronosticar la inflación a 1 año, de modo que se analice la situacion tanto en corto como en el mediano plazo y así evaluan escenarios futuros</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Corto Plazo</th>
+<th>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mediano Plazo</td>
+<td>?</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<p>Ha habido críticas sobre la manera como el Banco pondera los errores de <strong>subpronóstico</strong> y <strong>sobrepronóstico</strong> de la inflación , así que estan interesados en brindar información al gobierno, más allá de un pronostico puntual,</p>
+<p><img src="images/clipboard-1115066958.jpeg" class="img-fluid"></p>
+<p>considerando la dispersión asociada al problema de pronósticos de inflación.</p>
+<p>Al modelo se le incorpora la información observada cada mes, sin embargo, se considera que un modelo económico del pais tiene un efecto temporal largo sobre el país.</p>
+<p>Razón por la cuál, solo se reespecifican sus componenetes y reestiman los parámetros cuando ocurren cambios de gobierno.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>▶ Componentes de la Metodología de Pronósticos
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Componente</th>
+<th style="text-align: left;">Descripción en el Contexto (Banco de la República - Inflación Mensual)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>(a) Variable de interés a modelar</strong></td>
+<td style="text-align: left;">Inflación mensual en Colombia (variación porcentual del IPC), acompañada de covariables clave (tipo de cambio, precios internacionales y tasas de interés).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(b) Periodicidad y componentes</strong></td>
+<td style="text-align: left;"><strong>Mensual.</strong> Presenta alta persistencia temporal (autocorrelación), posible estacionalidad anual y cambios estructurales (por crisis económicas, shocks de oferta o reformas).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>(c) Horizonte de predicción</strong></td>
+<td style="text-align: left;">Mediano plazo (<strong>12 meses / 1 año adelante</strong>) para evaluar el impacto con rezagos de la política monetaria en el corto y mediano plazo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(d) Pasos adelante de interés</strong></td>
+<td style="text-align: left;"><span class="math inline">\(h = 1, 2, \dots, 12\)</span> meses adelante.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>(e) Estrategia de ventana</strong></td>
+<td style="text-align: left;">Ventana expansiva de largo plazo (aprovechando la historia de los últimos 20 años para capturar el efecto temporal extenso del modelo económico).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(f) Estrategia de calibración</strong></td>
+<td style="text-align: left;">Actualización mensual de la información observada (reestimación de parámetros), con reespecificación estructural del modelo únicamente a largo plazo.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>(g) Resultado de interés</strong></td>
+<td style="text-align: left;">Pronósticos puntuales, intervalos de predicción y distribución del error/densidades de pronóstico (foco en la dispersión y asimetría para evaluar subpronóstico vs.&nbsp;sobrepronóstico).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(h) Métricas de evaluación</strong></td>
+<td style="text-align: left;">Funciones de pérdida asimétricas (ej. LINEX o Check Loss), además de métricas convencionales evaluadas en validación (RMSE, MAE, MAPE).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>(i) Modelo base (<em>benchmark</em>)</strong></td>
+<td style="text-align: left;">Modelo Naïve persistente (última inflación observada), AR(1) / ARIMA univariado sin covariables o inflacion objetivo/inercial.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Muestre que la expresión del SMAPE vista en clase, hace que esta métrica se encuentre siempre entre 0 y 2.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>SMAPE
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="images/clipboard-2633584292.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/clipboard-3197265741.png" class="img-fluid figure-img"></p>
+<figcaption><img src="images/clipboard-3063934185.png" class="img-fluid figure-img"><img src="images/clipboard-282596198.png" class="img-fluid figure-img"></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
